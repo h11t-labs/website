@@ -7,6 +7,7 @@ lang: nl
 readMin: 7
 project: online-bibliotheek-catalogus
 repo: https://github.com/h11t-labs/online-bibliotheek-catalogus
+url: https://onlinebibliotheekcatalogus.nl
 tags: ["python", "sqlite", "fts5", "fastapi", "scraping"]
 ---
 

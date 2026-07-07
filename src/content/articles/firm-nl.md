@@ -7,6 +7,7 @@ lang: nl
 readMin: 6
 project: firm
 repo: https://github.com/h11t-labs/firm
+url: https://h11t-labs.github.io/firm/
 tags: ["python", "background-jobs", "caching", "postgresql", "sqlite"]
 ---
 
