@@ -96,5 +96,3 @@ Inspired by the Rails Solid stack from 37signals
 ([solid_queue](https://github.com/rails/solid_queue),
 [solid_cache](https://github.com/rails/solid_cache),
 [solid_cable](https://github.com/rails/solid_cable)).
-
-Code: [github.com/h11t-labs/firm](https://github.com/h11t-labs/firm)

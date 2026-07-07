@@ -91,5 +91,3 @@ geautomatiseerd.
 De stack, in één regel: Python 3.11+, `httpx` + `beautifulsoup4`/`lxml` voor ophalen en
 parsen, `tenacity` voor retries, **SQLite + FTS5** voor opslag en zoeken, **FastAPI +
 Jinja2** voor de UI, en **uv** voor packaging.
-
-Code: [github.com/h11t-labs/online-bibliotheek-catalogus](https://github.com/h11t-labs/online-bibliotheek-catalogus)

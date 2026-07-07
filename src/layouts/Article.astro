@@ -1,7 +1,7 @@
 ---
 import Base from './Base.astro';
 import T from '../components/T.astro';
-import GithubIcon from '../components/GithubIcon.astro';
+import RepoLinks from '../components/RepoLinks.astro';
 
 interface Props {
   titleEn: string;
@@ -11,8 +11,9 @@ interface Props {
   readMin?: number;
   tags?: string[];
   repo?: string;
+  url?: string;
 }
-const { titleEn, titleNl, description, pubDate, readMin = 5, tags = [], repo } = Astro.props;
+const { titleEn, titleNl, description, pubDate, readMin = 5, tags = [], repo, url } = Astro.props;
 
 const dateEn = pubDate.toLocaleDateString('en-GB', { year: 'numeric', month: 'long', day: 'numeric' });
 const dateNl = pubDate.toLocaleDateString('nl-NL', { year: 'numeric', month: 'long', day: 'numeric' });
@@ -32,13 +33,7 @@ const iso = pubDate.toISOString().slice(0, 10);
       <span data-i18n-lang="en"><time datetime={iso}>{dateEn}</time></span><span data-i18n-lang="nl"><time datetime={iso}>{dateNl}</time></span>
     </div>
 
-    {repo && (
-      <p class="article__repo">
-        <a class="btn btn--gh" href={repo} target="_blank" rel="noopener">
-          <GithubIcon /> <T en="view on github" nl="bekijk op github" />
-        </a>
-      </p>
-    )}
+    <RepoLinks repo={repo} url={url} placement="top" />
 
     <div class="prose">
       <div data-i18n-lang="en"><slot name="body-en" /></div>
@@ -50,6 +45,8 @@ const iso = pubDate.toISOString().slice(0, 10);
         {tags.map((t) => <span class="tag">{t}</span>)}
       </footer>
     )}
+
+    <RepoLinks repo={repo} url={url} placement="bottom" />
 
     <p class="article__back"><a href="/writing"><T en="← all writing" nl="← alle artikelen" /></a></p>
   </article>
@@ -69,7 +66,6 @@ const iso = pubDate.toISOString().slice(0, 10);
     margin-bottom: 1.6rem;
   }
   .article__meta .dot { color: var(--index); }
-  .article__repo { margin: 0 0 2.4rem; }
 
   .article__tags { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-top: 3rem; padding-top: 1.6rem; border-top: 1px solid var(--border); }
   .article__back { margin-top: 1.6rem; font-family: var(--font-mono); font-size: 0.82rem; }

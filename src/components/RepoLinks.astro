@@ -1,0 +1,35 @@
+---
+// The outbound links for an article's subject: the project's own site (primary,
+// if it has one) and its GitHub repo. Rendered both above and below the article,
+// so `placement` just tunes the margins.
+import T from './T.astro';
+import GithubIcon from './GithubIcon.astro';
+
+interface Props {
+  repo?: string;
+  url?: string;
+  placement?: 'top' | 'bottom';
+}
+const { repo, url, placement = 'top' } = Astro.props;
+---
+
+{(repo || url) && (
+  <p class:list={['repo-links', placement]}>
+    {url && (
+      <a class="btn btn--primary" href={url} target="_blank" rel="noopener">
+        <T en="Visit the site ↗" nl="Bekijk de site ↗" />
+      </a>
+    )}
+    {repo && (
+      <a class="btn btn--gh" href={repo} target="_blank" rel="noopener">
+        <GithubIcon /> <T en="view on github" nl="bekijk op github" />
+      </a>
+    )}
+  </p>
+)}
+
+<style>
+  .repo-links { display: flex; flex-wrap: wrap; gap: 0.7rem; }
+  .repo-links.top { margin: 0 0 2.4rem; }
+  .repo-links.bottom { margin: 2rem 0 0; }
+</style>

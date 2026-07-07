@@ -86,5 +86,3 @@ no parallel hammering. No login or borrow actions are automated.
 The stack, in one line: Python 3.11+, `httpx` + `beautifulsoup4`/`lxml` for
 fetching and parsing, `tenacity` for retries, **SQLite + FTS5** for storage and
 search, **FastAPI + Jinja2** for the UI, and **uv** for packaging.
-
-Code: [github.com/h11t-labs/online-bibliotheek-catalogus](https://github.com/h11t-labs/online-bibliotheek-catalogus)

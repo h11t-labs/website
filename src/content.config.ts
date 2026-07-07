@@ -21,6 +21,8 @@ const articles = defineCollection({
     project: z.string().optional(),
     // canonical GitHub URL for the article's subject
     repo: z.string().url().optional(),
+    // the project's own live site / demo / docs, if any
+    url: z.string().url().optional(),
     tags: z.array(z.string()).default([]),
     draft: z.boolean().default(false),
   }),
