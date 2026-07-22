@@ -4,10 +4,11 @@ import GithubIcon from './GithubIcon.astro';
 interface Props { project: Project; index: number; }
 const { project } = Astro.props;
 
-// Primary destination = "the project itself": a live url if it has one,
-// otherwise its write-up on this site.
+// Up to three actions: the live project (if any), its write-up on this site
+// (if any), and the GitHub repo. The write-up is the emphasized action only
+// when there's no live url to point at instead.
 const hasUrl = Boolean(project.url);
-const primaryHref = project.url ?? (project.article ? `/writing/${project.article}` : project.repo ?? '#');
+const hasArticle = Boolean(project.article);
 ---
 
 <article class="work">
@@ -27,13 +28,16 @@ const primaryHref = project.url ?? (project.article ? `/writing/${project.articl
     </div>
 
     <div class="work__actions">
-      <a class="btn btn--primary" href={primaryHref} {...hasUrl ? { target: '_blank', rel: 'noopener' } : {}}>
-        {hasUrl ? (
-          <><span data-i18n-lang="en">Visit project ↗</span><span data-i18n-lang="nl">Bekijk project ↗</span></>
-        ) : (
-          <><span data-i18n-lang="en">Read the write-up →</span><span data-i18n-lang="nl">Lees het verhaal →</span></>
-        )}
-      </a>
+      {hasUrl && (
+        <a class="btn btn--primary" href={project.url} target="_blank" rel="noopener">
+          <span data-i18n-lang="en">Visit project ↗</span><span data-i18n-lang="nl">Bekijk project ↗</span>
+        </a>
+      )}
+      {hasArticle && (
+        <a class={`btn ${hasUrl ? 'btn--ghost' : 'btn--primary'}`} href={`/writing/${project.article}`}>
+          <span data-i18n-lang="en">Read the write-up →</span><span data-i18n-lang="nl">Lees het verhaal →</span>
+        </a>
+      )}
       {project.repo && (
         <a class="btn btn--gh" href={project.repo} target="_blank" rel="noopener"><GithubIcon /> GitHub</a>
       )}

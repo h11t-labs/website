@@ -15,6 +15,19 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    slug: 'kobo2readwise',
+    name: 'kobo2readwise',
+    year: '2026',
+    description:
+      "Highlights from sideloaded Kobo books live only in the device's local SQLite and never touch the cloud, so Readwise can't fetch them. The known fix is a desktop app (October); I did it in the browser instead — read KoboReader.sqlite with sql.js over the File System Access API and forward the highlights through a stateless proxy that forgets your token.",
+    descriptionNl:
+      "Aantekeningen uit zelf-geüploade Kobo-boeken staan alleen in de lokale SQLite van het apparaat en bereiken de cloud nooit, dus Readwise kan ze niet ophalen. De bekende oplossing is een desktop-app (October); ik deed het in de browser — KoboReader.sqlite lezen met sql.js via de File System Access API en de aantekeningen doorsturen via een stateless proxy die je token vergeet.",
+    tags: ['python', 'fastapi', 'sqlite', 'wasm'],
+    repo: 'https://github.com/h11t-labs/kobo2readwise',
+    url: 'https://kobo2readwise.fly.dev',
+    article: 'kobo2readwise',
+  },
+  {
     slug: 'online-bibliotheek-catalogus',
     name: 'online-bibliotheek-catalogus',
     year: '2026',
@@ -24,6 +37,7 @@ export const projects: Project[] = [
       "De officiële zoekfunctie van onlinebibliotheek.nl dreef me tot wanhoop, dus schraapte ik de hele catalogus naar SQLite + FTS5 en gaf 'm de snelle, gefacetteerde zoekfunctie die-ie verdient. Enumereren, parsen, normaliseren met een atomische rebuild, ranken met bm25.",
     tags: ['python', 'fastapi', 'sqlite', 'fts5'],
     repo: 'https://github.com/h11t-labs/online-bibliotheek-catalogus',
+    url: 'https://onlinebibliotheekcatalogus.nl',
     article: 'online-bibliotheek-catalogus',
   },
   {

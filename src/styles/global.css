@@ -213,8 +213,8 @@ html:lang(nl) [data-i18n-lang="nl"] { display: contents; }
 .btn:hover { text-decoration: none; transform: translateY(-1px); }
 .btn--primary { background: var(--amber); color: #0f1115; border-color: var(--amber); }
 .btn--primary:hover { background: #f7b551; }
-.btn--ghost { background: transparent; color: var(--text); border-color: var(--border); }
-.btn--ghost:hover { border-color: var(--muted); }
+.btn--ghost { background: transparent; color: var(--text); border-color: color-mix(in srgb, var(--text) 26%, transparent); }
+.btn--ghost:hover { border-color: var(--text); background: color-mix(in srgb, var(--text) 7%, transparent); }
 /* github button: neutral (black on light, white on dark), never amber */
 .btn--gh { background: transparent; color: var(--text); border-color: color-mix(in srgb, var(--text) 26%, transparent); }
 .btn--gh:hover { border-color: var(--text); background: color-mix(in srgb, var(--text) 7%, transparent); }
