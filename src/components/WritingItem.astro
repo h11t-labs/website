@@ -6,17 +6,24 @@ interface Props {
   descEn: string;
   descNl: string;
   readMin: number;
+  pubDate: Date;
 }
-const { slug, titleEn, titleNl, descEn, descNl, readMin } = Astro.props;
+const { slug, titleEn, titleNl, descEn, descNl, readMin, pubDate } = Astro.props;
+
+const dateEn = pubDate.toLocaleDateString('en-GB', { year: 'numeric', month: 'long', day: 'numeric' });
+const dateNl = pubDate.toLocaleDateString('nl-NL', { year: 'numeric', month: 'long', day: 'numeric' });
+const iso = pubDate.toISOString().slice(0, 10);
 ---
 
 <a class="post" href={`/writing/${slug}/`}>
   <div class="post__meta">
-    <span class="post__time">{readMin} min</span>
+    <span>{readMin} min</span>
+    <span class="dot">·</span>
+    <span data-i18n-lang="en"><time datetime={iso}>{dateEn}</time></span><span data-i18n-lang="nl"><time datetime={iso}>{dateNl}</time></span>
   </div>
-  <h3 class="post__title">
+  <h2 class="post__title">
     <span data-i18n-lang="en">{titleEn}</span><span data-i18n-lang="nl">{titleNl}</span>
-  </h3>
+  </h2>
   <p class="post__desc">
     <span data-i18n-lang="en">{descEn}</span><span data-i18n-lang="nl">{descNl}</span>
   </p>
@@ -31,11 +38,15 @@ const { slug, titleEn, titleNl, descEn, descNl, readMin } = Astro.props;
   }
   .post:hover { text-decoration: none; }
   .post__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
     font-family: var(--font-mono);
     font-size: 0.75rem;
+    color: var(--faint);
     margin-bottom: 0.9rem;
   }
-  .post__time { color: var(--faint); }
+  .post__meta .dot { color: var(--index); }
   .post__title {
     font-family: var(--font-display);
     font-size: clamp(1.5rem, 3.2vw, 2rem);

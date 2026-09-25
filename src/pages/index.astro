@@ -50,6 +50,7 @@ const articles = await getArticlePairs();
         descEn={a.en.data.description}
         descNl={(a.nl ?? a.en).data.description}
         readMin={a.en.data.readMin}
+        pubDate={a.en.data.pubDate}
       />
     ))}
   </section>
