@@ -22,7 +22,7 @@ const iso = pubDate.toISOString().slice(0, 10);
 
 <Base title={titleEn} description={description} type="article">
   <article class="article">
-    <p class="kicker"><a href="/writing"><T en="writing" nl="artikelen" /></a></p>
+    <p class="kicker"><a href="/writing/"><T en="writing" nl="artikelen" /></a></p>
     <h1 class="page-title article__title">
       <span data-i18n-lang="en">{titleEn}</span><span data-i18n-lang="nl">{titleNl}</span>
     </h1>
@@ -48,7 +48,7 @@ const iso = pubDate.toISOString().slice(0, 10);
 
     <RepoLinks repo={repo} url={url} placement="bottom" />
 
-    <p class="article__back"><a href="/writing"><T en="← all writing" nl="← alle artikelen" /></a></p>
+    <p class="article__back"><a href="/writing/"><T en="← all writing" nl="← alle artikelen" /></a></p>
   </article>
 </Base>
 

@@ -18,7 +18,7 @@ export async function GET(ctx: APIContext) {
 
   L.push('## Projects');
   for (const p of projects) {
-    const url = p.article ? `${site}/writing/${p.article}` : p.url ?? p.repo ?? site;
+    const url = p.article ? `${site}/writing/${p.article}/` : p.url ?? p.repo ?? site;
     const repo = p.repo ? ` (repo: ${p.repo})` : '';
     L.push(`- [${p.name}](${url}): ${p.description}${repo}`);
   }
@@ -26,15 +26,15 @@ export async function GET(ctx: APIContext) {
 
   L.push('## Writing');
   for (const a of articles) {
-    L.push(`- [${a.en.data.title}](${site}/writing/${a.slug}): ${a.en.data.description} (${a.en.data.readMin} min)`);
+    L.push(`- [${a.en.data.title}](${site}/writing/${a.slug}/): ${a.en.data.description} (${a.en.data.readMin} min)`);
   }
   L.push('');
 
   L.push('## Pages');
   L.push(`- [Home](${site}/)`);
-  L.push(`- [Work](${site}/work): all projects`);
-  L.push(`- [Writing](${site}/writing): all articles`);
-  L.push(`- [About](${site}/about)`);
+  L.push(`- [Work](${site}/work/): all projects`);
+  L.push(`- [Writing](${site}/writing/): all articles`);
+  L.push(`- [About](${site}/about/)`);
   L.push('');
 
   L.push('## Full text');

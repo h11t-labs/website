@@ -68,7 +68,9 @@ export default defineConfig({
       },
     },
   ],
-  trailingSlash: 'ignore',
+  // Pages build to <path>/index.html, which GitHub Pages serves at <path>/
+  // (and 301-redirects <path> to). Link to the slash form everywhere.
+  trailingSlash: 'always',
   build: {
     format: 'directory',
   },

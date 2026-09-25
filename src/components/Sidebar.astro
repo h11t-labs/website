@@ -2,15 +2,18 @@
 import Logo from './Logo.astro';
 import T from './T.astro';
 
-const path = Astro.url.pathname.replace(/\/$/, '') || '/';
-const isActive = (href: string) =>
-  href === '/' ? path === '/' : path === href || path.startsWith(href + '/');
+const trim = (p: string) => p.replace(/\/$/, '') || '/';
+const path = trim(Astro.url.pathname);
+const isActive = (href: string) => {
+  const h = trim(href);
+  return h === '/' ? path === '/' : path === h || path.startsWith(h + '/');
+};
 
 const nav = [
   { n: '00', href: '/', en: 'home', nl: 'home' },
-  { n: '01', href: '/work', en: 'projects', nl: 'projecten' },
-  { n: '02', href: '/writing', en: 'writing', nl: 'artikelen' },
-  { n: '03', href: '/about', en: 'about', nl: 'over' },
+  { n: '01', href: '/work/', en: 'projects', nl: 'projecten' },
+  { n: '02', href: '/writing/', en: 'writing', nl: 'artikelen' },
+  { n: '03', href: '/about/', en: 'about', nl: 'over' },
 ];
 // note: /system (the styleguide) is intentionally not in the nav — it's a
 // personal reference, dev-only, and excluded from the production build.

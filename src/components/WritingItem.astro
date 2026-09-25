@@ -10,7 +10,7 @@ interface Props {
 const { slug, titleEn, titleNl, descEn, descNl, readMin } = Astro.props;
 ---
 
-<a class="post" href={`/writing/${slug}`}>
+<a class="post" href={`/writing/${slug}/`}>
   <div class="post__meta">
     <span class="post__time">{readMin} min</span>
   </div>

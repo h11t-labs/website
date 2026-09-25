@@ -31,7 +31,7 @@ const articles = await getArticlePairs();
   <section class="index-block">
     <header class="index-head">
       <p class="kicker">01 <span class="sep">—</span> <span class="on"><T en="projects" nl="projecten" /></span></p>
-      <a class="index-more" href="/work"><T en="view all →" nl="bekijk alles →" /></a>
+      <a class="index-more" href="/work/"><T en="view all →" nl="bekijk alles →" /></a>
     </header>
     {projects.map((project, i) => <WorkItem project={project} index={i} />)}
   </section>
@@ -40,7 +40,7 @@ const articles = await getArticlePairs();
   <section class="index-block">
     <header class="index-head">
       <p class="kicker">02 <span class="sep">—</span> <span class="on"><T en="writing" nl="artikelen" /></span></p>
-      <a class="index-more" href="/writing"><T en="view all →" nl="bekijk alles →" /></a>
+      <a class="index-more" href="/writing/"><T en="view all →" nl="bekijk alles →" /></a>
     </header>
     {articles.map((a) => (
       <WritingItem

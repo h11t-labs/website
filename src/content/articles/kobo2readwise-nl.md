@@ -11,7 +11,7 @@ url: https://kobo2readwise.fly.dev
 tags: ["python", "fastapi", "sqlite", "wasm", "readwise"]
 ---
 
-Ik leen mijn boeken uit de [online bibliotheek](/writing/online-bibliotheek-catalogus)
+Ik leen mijn boeken uit de [online bibliotheek](/writing/online-bibliotheek-catalogus/)
 en lees ze op mijn Kobo. Tijdens het lezen markeer ik van alles — zinnen die blijven
 hangen, dingen die ik wil onthouden. Die aantekeningen wil ik in
 [Readwise](https://readwise.io) hebben, waar de rest van mijn highlights ook staat.
@@ -19,7 +19,7 @@ Alleen: dat gaat niet vanzelf.
 
 Boeken uit de Kobo-winkel, Kobo Plus en bibliotheekleningen synct Readwise zelf al. Maar
 **zelf-geüploade** boeken — EPUB's die je via Calibre, mail of USB op het apparaat zet,
-of bijvoorbeeld een lening uit de [online bibliotheek](/writing/online-bibliotheek-catalogus)
+of bijvoorbeeld een lening uit de [online bibliotheek](/writing/online-bibliotheek-catalogus/)
 die je met Adobe Digital Editions op je Kobo zet — zijn een ander verhaal. Hun highlights leven alleen in de lokale `KoboReader.sqlite` op
 de e-reader en bereiken de Kobo-cloud nooit, dus Readwise kan er niet bij.
 

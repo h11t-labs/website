@@ -28,7 +28,7 @@ export async function GET(ctx: APIContext) {
     O.push('');
     O.push(`- Tech: ${p.tags.join(', ')}`);
     if (p.repo) O.push(`- Repository: ${p.repo}`);
-    if (p.article) O.push(`- Write-up: ${site}/writing/${p.article}`);
+    if (p.article) O.push(`- Write-up: ${site}/writing/${p.article}/`);
     O.push('');
   }
 
@@ -40,7 +40,7 @@ export async function GET(ctx: APIContext) {
   for (const a of articles) {
     const date = a.en.data.pubDate.toISOString().slice(0, 10);
     O.push(`### ${a.en.data.title}`);
-    O.push(`${site}/writing/${a.slug} — ${a.en.data.readMin} min — ${date}`);
+    O.push(`${site}/writing/${a.slug}/ — ${a.en.data.readMin} min — ${date}`);
     O.push('');
     O.push((a.en.body ?? '').trim());
     O.push('');

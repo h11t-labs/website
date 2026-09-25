@@ -11,7 +11,7 @@ url: https://kobo2readwise.fly.dev
 tags: ["python", "fastapi", "sqlite", "wasm", "readwise"]
 ---
 
-I borrow my books from the [online library](/writing/online-bibliotheek-catalogus) and
+I borrow my books from the [online library](/writing/online-bibliotheek-catalogus/) and
 read them on my Kobo. While reading I highlight a lot — lines that stick, things I want to
 keep. I want those annotations in [Readwise](https://readwise.io), where the rest of my
 highlights already live. Except that doesn't happen by itself.
@@ -19,7 +19,7 @@ highlights already live. Except that doesn't happen by itself.
 Books from the Kobo store, Kobo Plus, and library loans already sync through Readwise's
 own integration. But **sideloaded** books — EPUBs you put on the device yourself via
 Calibre, email, or USB, or a loan from the
-[online library](/writing/online-bibliotheek-catalogus) that you transfer to your Kobo
+[online library](/writing/online-bibliotheek-catalogus/) that you transfer to your Kobo
 with Adobe Digital Editions — are a different story. Their highlights live only in the local
 `KoboReader.sqlite` on the e-reader and never reach the Kobo cloud, so Readwise can't get
 at them.
