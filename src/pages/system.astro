@@ -10,8 +10,8 @@ const colors = [
   { name: 'ink', hex: '#0f1115', note: 'background' },
   { name: 'surface', hex: '#141821', note: 'elevated' },
   { name: 'border', hex: '#23272e', note: 'hairlines' },
-  { name: 'amber', hex: '#f4a838', note: 'accent' },
-  { name: 'amber-text', hex: '#f4a838', note: 'amber as text' },
+  { name: 'accent', hex: '#eb4945', note: 'the red' },
+  { name: 'accent-text', hex: '#eb4945', note: 'accent as text' },
   { name: 'text', hex: '#e8ebef', note: 'primary' },
   { name: 'muted', hex: '#8b939e', note: 'secondary' },
   { name: 'faint', hex: '#7a828e', note: 'meta text' },
@@ -36,7 +36,7 @@ const type = [
     <h2 class="sec-label">logo</h2>
     <div class="logo-show"><Logo size={64} /></div>
     <p class="logo-note">
-      Poppins 800 italic + 700 · white h/t · amber 11 · amber period<br />
+      Poppins 800 italic + 700 · white h/t · red 11 · red period<br />
       fused stems, keyline strokes
     </p>
 
@@ -91,7 +91,7 @@ const type = [
   .type-row { padding: 1.4rem 0; border-top: 1px solid var(--border); }
   .type-row:first-child { border-top: 0; }
   .type-meta { display: flex; flex-wrap: wrap; gap: 0.8rem; font-family: var(--font-mono); font-size: 0.75rem; margin-bottom: 0.7rem; }
-  .type-role { color: var(--amber-text); }
+  .type-role { color: var(--accent-text); }
   .type-font { color: var(--text); }
   .type-use { color: var(--faint); }
   .type-sample { font-size: 1.5rem; color: var(--text); }

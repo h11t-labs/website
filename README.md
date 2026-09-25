@@ -5,7 +5,7 @@ and ported from the Claude Design source (`h11t labs.dc.html`).
 
 Dark, terminal-flavored, two-column: a fixed left sidebar (numbered nav) and a
 main column. Space Grotesk for headings/UI, Source Serif 4 for long-form prose,
-JetBrains Mono for labels, Poppins for the wordmark. Amber `#f4a838` accent on
+JetBrains Mono for labels, Poppins for the wordmark. Red `#eb4945` accent on
 ink `#0f1115`.
 
 ## Brand — assets, style guide & tone of voice
@@ -111,8 +111,8 @@ bodies are the paired `-en`/`-nl` files ([src/lib/articles.ts](src/lib/articles.
 All colors and fonts live as CSS custom properties at the top of
 `src/styles/global.css`, mirrored on the `/system` page. The **source of truth** is
 [tokens.css in the brand repo](https://github.com/h11t-labs/brand/blob/main/tokens.css);
-keep the two in sync (ink, surface, border, amber, amber-text, text, muted, faint,
-link, index — dark and light).
+keep the two in sync (ink, surface, border, accent, accent-text, text, muted,
+faint, link, index — dark and light).
 
 ## Deploy
 
