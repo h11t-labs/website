@@ -28,15 +28,18 @@ npm install        # once
 npm run dev        # http://localhost:4321 with hot reload
 npm run build      # render static site to ./dist
 npm run preview    # serve ./dist locally
+npm run check      # type-check (astro check); CI runs it on every PR
 ```
 
-Requires Node 18.20.8+ / 20.3+ / 22+.
+Requires Node 22.12+ (see `.nvmrc`).
 
 ## Pages
 
 `/` home (statement + work + writing indexes) · `/work` projects · `/writing`
 posts · `/writing/<slug>` a post · `/system` the design-token styleguide ·
-`/about` · `/rss.xml`.
+`/about` · `/rss.xml` · `/sitemap.xml` · `/llms.txt` · `/404.html` (what GitHub
+Pages serves for unknown URLs). Internal links always end in `/` (`trailingSlash:
+'always'`), matching how Pages serves `<path>/index.html` — no redirect per click.
 
 ## Structure
 
@@ -46,17 +49,26 @@ src/
   content.config.ts         articles collection (title, category, readMin, repo, …)
   data/projects.ts          the work items (name, category, year, tags, repo, handle)
   layouts/
-    Base.astro              two-column shell, <head>, Google Fonts
+    Base.astro              two-column shell, <head>, fonts, social preview
     Article.astro           post layout — serif prose, meta, github button
   components/
     Logo.astro              the h11t labs wordmark (Poppins recipe)
     Sidebar.astro           logo + numbered nav + EN/NL toggle + footer
     WorkItem.astro          one project row
     WritingItem.astro       one post row
-  pages/                    index, work, writing, system, about, rss.xml.ts
+  pages/                    index, work, writing, system, about, 404,
+                            rss.xml.ts, sitemap.xml.ts, llms(-full).txt.ts
   styles/global.css         design tokens + base styles
-public/favicon.svg
+public/                     favicon.svg, og.png (social preview), robots.txt, CNAME
+scripts/og-image.html       the source of public/og.png
 ```
+
+## Fonts
+
+Self-hosted: the four families come from the `@fontsource` packages in
+`package.json` and are wired up with Astro's fonts API (`fonts` in
+`astro.config.mjs`, `<Font>` in `Base.astro`). They're served from this site,
+so a page view makes no third-party request, and the build needs no network.
 
 ## Add a project
 
@@ -105,8 +117,9 @@ link, index — dark and light).
 ## Deploy
 
 The site auto-deploys to **GitHub Pages** via GitHub Actions. Every push to `main`
-runs [.github/workflows/deploy.yml](.github/workflows/deploy.yml): it builds with
-Node 22 (`npm ci && npm run build`) and publishes `dist/` to Pages.
+runs [.github/workflows/deploy.yml](.github/workflows/deploy.yml): it type-checks
+and builds with Node 22 (`npm ci && npm run check && npm run build`) and publishes
+`dist/` to Pages. Pull requests run the same check and build, without deploying.
 
 **One-time setup:**
 

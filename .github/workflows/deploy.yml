@@ -4,19 +4,22 @@ on:
   # Deploy on every push to the default branch
   push:
     branches: [main]
+  # Type-check and build every pull request (no deploy), so a broken PR —
+  # including Dependabot bumps — shows up red before it's merged
+  pull_request:
   # ...and allow manual runs from the Actions tab
   workflow_dispatch:
 
-# Least-privilege token, plus what Pages deployment needs (OIDC)
+# Least-privilege token; the deploy job adds what Pages deployment needs (OIDC)
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
-# One deploy at a time; let an in-progress deploy finish rather than cancelling it
+# Deploys run one at a time and an in-progress deploy finishes rather than
+# being cancelled. PR checks get their own group and newer pushes cancel
+# older runs.
 concurrency:
-  group: pages
-  cancel-in-progress: false
+  group: ${{ github.event_name == 'pull_request' && format('pr-{0}', github.event.pull_request.number) || 'pages' }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
   build:
@@ -34,17 +37,25 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Type-check
+        run: npm run check # astro check: .astro/.ts types + content schema
+
       - name: Build site
         run: npm run build # astro build + strips the dev-only /system page
 
       - name: Upload Pages artifact
+        if: github.event_name != 'pull_request'
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./dist
 
   deploy:
+    if: github.event_name != 'pull_request'
     needs: build
     runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
