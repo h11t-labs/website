@@ -35,8 +35,8 @@
  * The same tokens, retuned for a warm-paper light mode. Applied
  * automatically when the OS prefers light (unless the toggle has forced a
  * theme), or explicitly via [data-theme]. Amber stays bright for fills and
- * the logo, and deepens only where it's text (--amber-text); everything
- * else references the tokens, so it just adapts. */
+ * the logo; where it's text (--amber-text) it turns a deeper, redder copper.
+ * Everything else references the tokens, so it just adapts. */
 @media (prefers-color-scheme: light) {
   :root:not([data-theme]) {
     color-scheme: light;
@@ -44,7 +44,7 @@
     --surface:    #f1efe8;
     --border:     #e6e2d8;
     --amber:      #f4a838;
-    --amber-text: #995e08;
+    --amber-text: #be4103;
     --text:       #17191d;
     --muted:      #676c66;
     --faint:      #6b6f69;
@@ -58,7 +58,7 @@
   --surface:    #f1efe8;
   --border:     #e6e2d8;
   --amber:      #f4a838;
-  --amber-text: #995e08;
+  --amber-text: #be4103;
   --text:       #17191d;
   --muted:      #676c66;
   --faint:      #6b6f69;
