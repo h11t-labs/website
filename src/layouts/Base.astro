@@ -7,11 +7,14 @@ interface Props {
   title?: string;
   description?: string;
   type?: 'website' | 'article';
+  /** keep the page out of search results (e.g. the 404 page) */
+  noindex?: boolean;
 }
 const {
   title = 'h11t labs',
   description = 'h11t labs is where I host and show my personal projects — mostly Python: scrapers, search, and background tooling.',
   type = 'website',
+  noindex = false,
 } = Astro.props;
 
 const fullTitle = title === 'h11t labs' ? title : `${title} — h11t labs`;
@@ -35,14 +38,14 @@ const canonical = new URL(Astro.url.pathname, Astro.site).toString();
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
-    <link rel="canonical" href={canonical} />
+    {noindex ? <meta name="robots" content="noindex" /> : <link rel="canonical" href={canonical} />}
     <meta name="color-scheme" content="light dark" />
 
     <meta property="og:site_name" content="h11t labs" />
     <meta property="og:type" content={type} />
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
-    <meta property="og:url" content={canonical} />
+    {!noindex && <meta property="og:url" content={canonical} />}
     <meta name="twitter:card" content="summary" />
 
     <!-- self-hosted fonts (astro.config.mjs → fonts); preload what's above the fold -->
