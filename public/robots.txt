@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://h11t-labs.nl/sitemap.xml
