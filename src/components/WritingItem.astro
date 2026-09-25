@@ -35,7 +35,7 @@ const { slug, titleEn, titleNl, descEn, descNl, readMin } = Astro.props;
     font-size: 0.75rem;
     margin-bottom: 0.9rem;
   }
-  .post__time { color: var(--index); }
+  .post__time { color: var(--faint); }
   .post__title {
     font-family: var(--font-display);
     font-size: clamp(1.5rem, 3.2vw, 2rem);
@@ -45,6 +45,6 @@ const { slug, titleEn, titleNl, descEn, descNl, readMin } = Astro.props;
     margin: 0 0 0.7rem;
     transition: color .15s ease;
   }
-  .post:hover .post__title { color: var(--amber); }
+  .post:hover .post__title { color: var(--amber-text); }
   .post__desc { color: var(--muted); font-size: 1rem; line-height: 1.65; margin: 0; max-width: 56ch; }
 </style>

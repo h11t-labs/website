@@ -99,7 +99,8 @@ bodies are the paired `-en`/`-nl` files ([src/lib/articles.ts](src/lib/articles.
 All colors and fonts live as CSS custom properties at the top of
 `src/styles/global.css`, mirrored on the `/system` page. The **source of truth** is
 [tokens.css in the brand repo](https://github.com/h11t-labs/brand/blob/main/tokens.css);
-keep the two in sync (ink, surface, border, amber, text, muted, link, index).
+keep the two in sync (ink, surface, border, amber, amber-text, text, muted, faint,
+link, index — dark and light).
 
 ## Deploy
 

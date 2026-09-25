@@ -6,15 +6,19 @@
 
 :root {
   color-scheme: dark;
-  /* color tokens (from the design's /system page) */
-  --ink:     #0f1115;   /* page background            */
-  --surface: #141821;   /* elevated surface / cards   */
-  --border:  #23272e;   /* hairlines, dividers        */
-  --amber:   #f4a838;   /* accent                     */
-  --text:    #e8ebef;   /* primary text / headings    */
-  --muted:   #8b939e;   /* body / secondary text      */
-  --link:    #6f9be8;   /* links (repo handles)       */
-  --index:   #3c4450;   /* faint numerals, keylines   */
+  /* color tokens (mirrors tokens.css in the brand repo). Words are >= 4.5:1
+     on ink; `index` is decorative only, so small text uses `faint` and amber
+     words use `amber-text`. */
+  --ink:        #0f1115;   /* page background                         */
+  --surface:    #141821;   /* elevated surface / cards                */
+  --border:     #23272e;   /* hairlines, dividers                     */
+  --amber:      #f4a838;   /* accent: fills, the logo, markers        */
+  --amber-text: #f4a838;   /* amber as text                           */
+  --text:       #e8ebef;   /* primary text / headings                 */
+  --muted:      #8b939e;   /* body / secondary text                   */
+  --faint:      #7a828e;   /* meta: dates, read times, inactive UI    */
+  --link:       #6f9be8;   /* links (repo handles)                    */
+  --index:      #3c4450;   /* decorative: keylines, separators        */
 
   /* type families */
   --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif; /* headings + UI */
@@ -29,33 +33,38 @@
 }
 
 /* ---- light theme ---------------------------------------------------- *
- * The same eight tokens, retuned for a warm-paper light mode. Applied
+ * The same tokens, retuned for a warm-paper light mode. Applied
  * automatically when the OS prefers light (unless the toggle has forced a
- * theme), or explicitly via [data-theme]. Amber deepens to stay legible on
- * a pale ground; everything else references the tokens, so it just adapts. */
+ * theme), or explicitly via [data-theme]. Amber stays bright for fills and
+ * the logo, and deepens only where it's text (--amber-text); everything
+ * else references the tokens, so it just adapts. */
 @media (prefers-color-scheme: light) {
   :root:not([data-theme]) {
     color-scheme: light;
-    --ink:     #faf9f6;
-    --surface: #f1efe8;
-    --border:  #e6e2d8;
-    --amber:   #f4a838;
-    --text:    #17191d;
-    --muted:   #676c66;
-    --link:    #2a61c2;
-    --index:   #b6b1a6;
+    --ink:        #faf9f6;
+    --surface:    #f1efe8;
+    --border:     #e6e2d8;
+    --amber:      #f4a838;
+    --amber-text: #995e08;
+    --text:       #17191d;
+    --muted:      #676c66;
+    --faint:      #6b6f69;
+    --link:       #2a61c2;
+    --index:      #b6b1a6;
   }
 }
 :root[data-theme="light"] {
   color-scheme: light;
-  --ink:     #faf9f6;
-  --surface: #ffffff;
-  --border:  #e6e2d8;
-  --amber:   #f4a838;
-  --text:    #17191d;
-  --muted:   #676c66;
-  --link:    #2a61c2;
-  --index:   #b6b1a6;
+  --ink:        #faf9f6;
+  --surface:    #f1efe8;
+  --border:     #e6e2d8;
+  --amber:      #f4a838;
+  --amber-text: #995e08;
+  --text:       #17191d;
+  --muted:      #676c66;
+  --faint:      #6b6f69;
+  --link:       #2a61c2;
+  --index:      #b6b1a6;
 }
 
 * { box-sizing: border-box; }
@@ -115,7 +124,7 @@ h1, h2, h3, h4 {
   font-weight: 400;
   font-size: 0.32em;
   letter-spacing: 0;
-  color: var(--index);
+  color: var(--faint);
   vertical-align: middle;
   margin-left: 0.6rem;
 }
@@ -132,8 +141,8 @@ h1, h2, h3, h4 {
 }
 
 .muted { color: var(--muted); }
-.faint { color: var(--index); }
-.amber { color: var(--amber); }
+.faint { color: var(--faint); }
+.amber { color: var(--amber-text); }
 
 /* mono tag pill */
 .tag {

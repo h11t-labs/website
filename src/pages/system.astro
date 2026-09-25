@@ -11,10 +11,12 @@ const colors = [
   { name: 'surface', hex: '#141821', note: 'elevated' },
   { name: 'border', hex: '#23272e', note: 'hairlines' },
   { name: 'amber', hex: '#f4a838', note: 'accent' },
+  { name: 'amber-text', hex: '#f4a838', note: 'amber as text' },
   { name: 'text', hex: '#e8ebef', note: 'primary' },
   { name: 'muted', hex: '#8b939e', note: 'secondary' },
+  { name: 'faint', hex: '#7a828e', note: 'meta text' },
   { name: 'link', hex: '#6f9be8', note: 'links' },
-  { name: 'index', hex: '#3c4450', note: 'faint' },
+  { name: 'index', hex: '#3c4450', note: 'decorative' },
 ];
 
 const type = [
@@ -89,9 +91,9 @@ const type = [
   .type-row { padding: 1.4rem 0; border-top: 1px solid var(--border); }
   .type-row:first-child { border-top: 0; }
   .type-meta { display: flex; flex-wrap: wrap; gap: 0.8rem; font-family: var(--font-mono); font-size: 0.75rem; margin-bottom: 0.7rem; }
-  .type-role { color: var(--amber); }
+  .type-role { color: var(--amber-text); }
   .type-font { color: var(--text); }
-  .type-use { color: var(--index); }
+  .type-use { color: var(--faint); }
   .type-sample { font-size: 1.5rem; color: var(--text); }
   .sp-display { font-family: var(--font-display); font-weight: 500; letter-spacing: -0.02em; }
   .sp-prose { font-family: var(--font-prose); }
