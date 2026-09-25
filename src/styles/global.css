@@ -20,11 +20,10 @@
   --link:       #6f9be8;   /* links (repo handles)                    */
   --index:      #3c4450;   /* decorative: keylines, separators        */
 
-  /* type families */
-  --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif; /* headings + UI */
-  --font-prose:   "Source Serif 4", Georgia, "Times New Roman", serif;    /* long-form body */
-  --font-mono:    "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace; /* labels */
-  --font-logo:    "Poppins", var(--font-display);
+  /* type families — --font-display (Space Grotesk: headings + UI),
+     --font-prose (Source Serif 4: long-form body), --font-mono (JetBrains
+     Mono: labels) and --font-logo (Poppins: the wordmark) are defined by
+     Astro's fonts API; see `fonts` in astro.config.mjs. */
 
   /* layout */
   --sidebar-w: 360px;

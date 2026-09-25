@@ -1,5 +1,5 @@
 // @ts-check
-import { defineConfig } from 'astro/config';
+import { defineConfig, fontProviders } from 'astro/config';
 
 // GitHub's Shiki themes use a few token colours that fall under 4.5:1 on our
 // code surfaces (comments are 3.7:1 on the dark one). Swap just those for the
@@ -14,6 +14,60 @@ const aaCodeColors = {
 // Output is plain static files (dist/), deployable to any host.
 export default defineConfig({
   site: 'https://h11t-labs.nl',
+  // Self-hosted fonts: the files come from the @fontsource packages in
+  // package.json (pinned by the lockfile) and are served from this site, so a
+  // page view makes no request to Google or anyone else. Each family becomes a
+  // CSS variable used in global.css, with a metric-matched local fallback.
+  // Latin subset only (covers English and Dutch).
+  fonts: [
+    {
+      provider: fontProviders.local(),
+      name: 'Space Grotesk',
+      cssVariable: '--font-display',
+      fallbacks: ['ui-sans-serif', 'system-ui', 'sans-serif'],
+      options: {
+        variants: [
+          { src: ['@fontsource-variable/space-grotesk/files/space-grotesk-latin-wght-normal.woff2'], weight: '300 700', style: 'normal' },
+        ],
+      },
+    },
+    {
+      provider: fontProviders.local(),
+      name: 'Source Serif 4',
+      cssVariable: '--font-prose',
+      fallbacks: ['Georgia', 'Times New Roman', 'serif'],
+      options: {
+        variants: [
+          { src: ['@fontsource-variable/source-serif-4/files/source-serif-4-latin-wght-normal.woff2'], weight: '200 900', style: 'normal' },
+          { src: ['@fontsource-variable/source-serif-4/files/source-serif-4-latin-wght-italic.woff2'], weight: '200 900', style: 'italic' },
+        ],
+      },
+    },
+    {
+      provider: fontProviders.local(),
+      name: 'JetBrains Mono',
+      cssVariable: '--font-mono',
+      fallbacks: ['ui-monospace', 'SF Mono', 'Menlo', 'monospace'],
+      options: {
+        variants: [
+          { src: ['@fontsource-variable/jetbrains-mono/files/jetbrains-mono-latin-wght-normal.woff2'], weight: '100 800', style: 'normal' },
+        ],
+      },
+    },
+    {
+      // the wordmark only: 800 italic for "h11t", 700 upright for "labs."
+      provider: fontProviders.local(),
+      name: 'Poppins',
+      cssVariable: '--font-logo',
+      fallbacks: ['sans-serif'],
+      options: {
+        variants: [
+          { src: ['@fontsource/poppins/files/poppins-latin-800-italic.woff2'], weight: 800, style: 'italic' },
+          { src: ['@fontsource/poppins/files/poppins-latin-700-normal.woff2'], weight: 700, style: 'normal' },
+        ],
+      },
+    },
+  ],
   trailingSlash: 'ignore',
   build: {
     format: 'directory',
