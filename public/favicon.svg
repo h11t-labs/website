@@ -1,7 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
   <rect width="32" height="32" rx="7" fill="#0f1115"/>
   <rect x="1" y="1" width="30" height="30" rx="6" fill="none" stroke="#23272e"/>
-  <!-- the "h": Poppins 800 italic at 20px, as an outline (a favicon can't load web fonts) -->
-  <path fill="#eb4945" d="M18.96 15.24Q18.96 15.82 18.84 16.46L17.68 23H13.76L14.82 16.98Q14.88 16.68 14.88 16.44Q14.88 15.72 14.47 15.32Q14.06 14.92 13.32 14.92Q12.5 14.92 11.92 15.42Q11.34 15.92 11.14 16.8L10.04 23H6.1L8.72 8.2H12.66L11.74 13.38Q12.4 12.62 13.36 12.15Q14.32 11.68 15.48 11.68Q17.12 11.68 18.04 12.62Q18.96 13.56 18.96 15.24Z"/>
-  <rect x="19" y="22" width="7" height="4" rx="1" fill="#eb4945"/>
+  <!-- the "h11t" mark from the wordmark: Poppins 800 italic as outlines (a favicon
+       can't load web fonts), overlapping like the logo, each glyph stroked in ink
+       under its fill so the fused stems keep a keyline -->
+  <g stroke="#0f1115" stroke-width="1.2" stroke-linejoin="round" paint-order="stroke fill">
+  <path fill="#e8ebef" d="M15.05 15.67Q15.05 16.2 14.94 16.79L13.87 22.82H10.26L11.24 17.27Q11.29 17 11.29 16.77Q11.29 16.11 10.91 15.74Q10.54 15.37 9.85 15.37Q9.1 15.37 8.56 15.83Q8.03 16.29 7.84 17.11L6.83 22.82H3.2L5.61 9.18H9.25L8.4 13.95Q9.01 13.25 9.89 12.82Q10.77 12.39 11.84 12.39Q13.36 12.39 14.2 13.25Q15.05 14.12 15.05 15.67Z"/>
+  <path fill="#eb4945" d="M13.72 13.14 14.33 9.77H20.01L17.7 22.82H13.93L15.62 13.14Z"/>
+  <path fill="#eb4945" d="M17.17 13.14 17.78 9.77H23.46L21.15 22.82H17.37L19.07 13.14Z"/>
+  <path fill="#e8ebef" d="M25.78 18.95Q25.76 19.04 25.76 19.17Q25.76 19.46 25.93 19.6Q26.11 19.74 26.51 19.74H27.57L27.01 22.82H25.43Q22.05 22.82 22.05 19.98Q22.05 19.5 22.17 18.89L22.77 15.48H21.5L22.04 12.48H23.31L23.75 9.97H27.38L26.94 12.48H28.8L28.27 15.48H26.4Z"/>
+  </g>
 </svg>
