@@ -59,7 +59,8 @@ src/
   pages/                    index, work, writing, system, about, 404,
                             rss.xml.ts, sitemap.xml.ts, llms(-full).txt.ts
   styles/global.css         design tokens + base styles
-public/                     favicon.svg, og.png (social preview), robots.txt, CNAME
+public/                     favicon.svg (from the brand repo), og.png (social
+                            preview), robots.txt, CNAME
 scripts/og-image.html       the source of public/og.png
 ```
 

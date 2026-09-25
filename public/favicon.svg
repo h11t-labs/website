@@ -1,17 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
-  <style>
-    .tile { fill: #0f1115; }
-    .ht   { fill: #e8ebef; }
-    @media (prefers-color-scheme: light) {
-      .tile { fill: #faf9f6; }
-      .ht   { fill: #17191d; }
-    }
-  </style>
-  <rect class="tile" width="32" height="32" rx="8"/>
-  <!-- the "h11t" mark from the wordmark: white h/t, red 1s, bold italic -->
-  <text x="16.3" y="22.6" text-anchor="middle"
-        font-family="Poppins, 'Space Grotesk', Arial, sans-serif"
-        font-size="17" font-weight="800" font-style="italic" letter-spacing="-0.6">
-    <tspan class="ht">h</tspan><tspan fill="#eb4945">11</tspan><tspan class="ht">t</tspan>
-  </text>
+  <rect width="32" height="32" rx="7" fill="#0f1115"/>
+  <rect x="1" y="1" width="30" height="30" rx="6" fill="none" stroke="#23272e"/>
+  <!-- the "h": Poppins 800 italic at 20px, as an outline (a favicon can't load web fonts) -->
+  <path fill="#eb4945" d="M18.96 15.24Q18.96 15.82 18.84 16.46L17.68 23H13.76L14.82 16.98Q14.88 16.68 14.88 16.44Q14.88 15.72 14.47 15.32Q14.06 14.92 13.32 14.92Q12.5 14.92 11.92 15.42Q11.34 15.92 11.14 16.8L10.04 23H6.1L8.72 8.2H12.66L11.74 13.38Q12.4 12.62 13.36 12.15Q14.32 11.68 15.48 11.68Q17.12 11.68 18.04 12.62Q18.96 13.56 18.96 15.24Z"/>
+  <rect x="19" y="22" width="7" height="4" rx="1" fill="#eb4945"/>
 </svg>
