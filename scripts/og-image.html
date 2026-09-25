@@ -1,0 +1,32 @@
+<!doctype html>
+<!-- Source for public/og.png, the social preview image. After `npm install`
+     (it loads the fonts from node_modules), open it in a browser and capture
+     the 1200x630 card. -->
+<html><head><meta charset="utf-8"><style>
+@font-face { font-family: 'Poppins'; src: url(../node_modules/@fontsource/poppins/files/poppins-latin-800-italic.woff2); font-weight: 800; font-style: italic; }
+@font-face { font-family: 'Poppins'; src: url(../node_modules/@fontsource/poppins/files/poppins-latin-700-normal.woff2); font-weight: 700; font-style: normal; }
+@font-face { font-family: 'Space Grotesk'; src: url(../node_modules/@fontsource-variable/space-grotesk/files/space-grotesk-latin-wght-normal.woff2); font-weight: 300 700; }
+@font-face { font-family: 'JetBrains Mono'; src: url(../node_modules/@fontsource-variable/jetbrains-mono/files/jetbrains-mono-latin-wght-normal.woff2); font-weight: 100 800; }
+html, body { margin: 0; }
+.card { width: 1200px; height: 630px; box-sizing: border-box; background: #0f1115; color: #e8ebef;
+  padding: 92px 96px 80px; display: flex; flex-direction: column; justify-content: space-between;
+  border-top: 6px solid #f4a838; -webkit-font-smoothing: antialiased; }
+.logo { display: inline-flex; align-items: baseline; font-family: 'Poppins'; line-height: 1; white-space: nowrap; }
+.mark { display: inline-flex; font-style: italic; font-weight: 800; font-size: 124px; }
+.g { color: #e8ebef; -webkit-text-stroke: 4px #0f1115; paint-order: stroke fill; }
+.g1 { color: #f4a838; margin-left: -0.17em; }
+.g1b { margin-left: -0.2em; }
+.gt { margin-left: -0.13em; }
+.labs { font-weight: 700; font-size: 124px; letter-spacing: -0.02em; margin-left: 0.24em; }
+.dot { font-weight: 800; font-size: 124px; color: #f4a838; }
+.tag { margin: 0; font-family: 'Space Grotesk'; font-weight: 500; font-size: 50px; line-height: 1.22; letter-spacing: -0.03em; max-width: 21ch; }
+.cursor { display: inline-block; width: 0.5em; height: 0.9em; background: #f4a838; margin-left: 0.14em; transform: translateY(0.12em); }
+.foot { margin: 0; font-family: 'JetBrains Mono'; font-size: 26px; color: #8b939e; display: flex; gap: 0.6em; }
+.foot .sep { color: #3c4450; }
+</style></head><body>
+<div class="card">
+  <span class="logo"><span class="mark"><span class="g">h</span><span class="g g1">1</span><span class="g g1 g1b">1</span><span class="g gt">t</span></span><span class="labs">labs</span><span class="dot">.</span></span>
+  <p class="tag">Mostly Python, always built to be read.<span class="cursor"></span></p>
+  <p class="foot"><span>h11t-labs.nl</span><span class="sep">—</span><span>projects &amp; writing</span></p>
+</div>
+</body></html>

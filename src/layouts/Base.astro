@@ -19,6 +19,8 @@ const {
 
 const fullTitle = title === 'h11t labs' ? title : `${title} — h11t labs`;
 const canonical = new URL(Astro.url.pathname, Astro.site).toString();
+// one branded preview image for every page (source: scripts/og-image.html)
+const ogImage = new URL('/og.png', Astro.site).toString();
 ---
 
 <!doctype html>
@@ -46,7 +48,11 @@ const canonical = new URL(Astro.url.pathname, Astro.site).toString();
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
     {!noindex && <meta property="og:url" content={canonical} />}
-    <meta name="twitter:card" content="summary" />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="h11t labs. Mostly Python, always built to be read." />
+    <meta name="twitter:card" content="summary_large_image" />
 
     <!-- self-hosted fonts (astro.config.mjs → fonts); preload what's above the fold -->
     <Font cssVariable="--font-display" preload />
