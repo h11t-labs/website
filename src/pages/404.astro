@@ -1,0 +1,39 @@
+---
+import Base from '../layouts/Base.astro';
+import T from '../components/T.astro';
+
+// GitHub Pages serves dist/404.html for any path that doesn't exist.
+---
+
+<Base title="Not found" description="This page doesn't exist." noindex>
+  <section class="notfound">
+    <p class="kicker">404 <span class="sep">—</span> <T en="not found" nl="niet gevonden" /></p>
+    <h1 class="page-title"><T en="Nothing here." nl="Hier staat niks." /></h1>
+    <p class="lede">
+      <T
+        en="This page doesn't exist, or it moved. The rest is where you left it."
+        nl="Deze pagina bestaat niet (meer). De rest staat nog waar je 'm liet."
+      />
+    </p>
+    <p class="notfound__links">
+      <a href="/"><T en="home →" nl="home →" /></a>
+      <a href="/work/"><T en="projects →" nl="projecten →" /></a>
+      <a href="/writing/"><T en="writing →" nl="artikelen →" /></a>
+    </p>
+  </section>
+</Base>
+
+<style>
+  .notfound__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.6rem;
+    margin-top: 2.5rem;
+    padding-top: 1.6rem;
+    border-top: 1px solid var(--border);
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+  }
+  .notfound__links a { color: var(--muted); }
+  .notfound__links a:hover { color: var(--accent-text); text-decoration: none; }
+</style>

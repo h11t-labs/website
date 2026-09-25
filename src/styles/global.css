@@ -6,21 +6,24 @@
 
 :root {
   color-scheme: dark;
-  /* color tokens (from the design's /system page) */
-  --ink:     #0f1115;   /* page background            */
-  --surface: #141821;   /* elevated surface / cards   */
-  --border:  #23272e;   /* hairlines, dividers        */
-  --amber:   #f4a838;   /* accent                     */
-  --text:    #e8ebef;   /* primary text / headings    */
-  --muted:   #8b939e;   /* body / secondary text      */
-  --link:    #6f9be8;   /* links (repo handles)       */
-  --index:   #3c4450;   /* faint numerals, keylines   */
+  /* color tokens (mirrors tokens.css in the brand repo). Words are >= 4.5:1
+     on ink; `index` is decorative only, so small text uses `faint` and
+     accent-colored words use `accent-text`. */
+  --ink:         #0f1115;   /* page background                         */
+  --surface:     #141821;   /* elevated surface / cards                */
+  --border:      #23272e;   /* hairlines, dividers                     */
+  --accent:      #eb4945;   /* the red: fills, the logo, markers       */
+  --accent-text: #eb4945;   /* the accent as text                      */
+  --text:        #e8ebef;   /* primary text / headings                 */
+  --muted:       #8b939e;   /* body / secondary text                   */
+  --faint:       #7a828e;   /* meta: dates, read times, inactive UI    */
+  --link:        #6f9be8;   /* links (repo handles)                    */
+  --index:       #3c4450;   /* decorative: keylines, separators        */
 
-  /* type families */
-  --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif; /* headings + UI */
-  --font-prose:   "Source Serif 4", Georgia, "Times New Roman", serif;    /* long-form body */
-  --font-mono:    "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace; /* labels */
-  --font-logo:    "Poppins", var(--font-display);
+  /* type families — --font-display (Space Grotesk: headings + UI),
+     --font-prose (Source Serif 4: long-form body), --font-mono (JetBrains
+     Mono: labels) and --font-logo (Poppins: the wordmark) are defined by
+     Astro's fonts API; see `fonts` in astro.config.mjs. */
 
   /* layout */
   --sidebar-w: 360px;
@@ -29,33 +32,38 @@
 }
 
 /* ---- light theme ---------------------------------------------------- *
- * The same eight tokens, retuned for a warm-paper light mode. Applied
+ * The same tokens, retuned for a warm-paper light mode. Applied
  * automatically when the OS prefers light (unless the toggle has forced a
- * theme), or explicitly via [data-theme]. Amber deepens to stay legible on
- * a pale ground; everything else references the tokens, so it just adapts. */
+ * theme), or explicitly via [data-theme]. The red stays the same for fills
+ * and the logo; where it's text (--accent-text) it goes a shade deeper.
+ * Everything else references the tokens, so it just adapts. */
 @media (prefers-color-scheme: light) {
   :root:not([data-theme]) {
     color-scheme: light;
-    --ink:     #faf9f6;
-    --surface: #f1efe8;
-    --border:  #e6e2d8;
-    --amber:   #f4a838;
-    --text:    #17191d;
-    --muted:   #676c66;
-    --link:    #2a61c2;
-    --index:   #b6b1a6;
+    --ink:         #faf9f6;
+    --surface:     #f1efe8;
+    --border:      #e6e2d8;
+    --accent:      #eb4945;
+    --accent-text: #ce282c;
+    --text:        #17191d;
+    --muted:       #676c66;
+    --faint:       #6b6f69;
+    --link:        #2a61c2;
+    --index:       #b6b1a6;
   }
 }
 :root[data-theme="light"] {
   color-scheme: light;
-  --ink:     #faf9f6;
-  --surface: #ffffff;
-  --border:  #e6e2d8;
-  --amber:   #f4a838;
-  --text:    #17191d;
-  --muted:   #676c66;
-  --link:    #2a61c2;
-  --index:   #b6b1a6;
+  --ink:         #faf9f6;
+  --surface:     #f1efe8;
+  --border:      #e6e2d8;
+  --accent:      #eb4945;
+  --accent-text: #ce282c;
+  --text:        #17191d;
+  --muted:       #676c66;
+  --faint:       #6b6f69;
+  --link:        #2a61c2;
+  --index:       #b6b1a6;
 }
 
 * { box-sizing: border-box; }
@@ -68,17 +76,19 @@ html {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
-  scroll-behavior: smooth;
+}
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
 }
 body { margin: 0; min-height: 100dvh; }
 
-/* the amber top hairline the design shows above the layout */
+/* the accent top hairline the design shows above the layout */
 body::before {
   content: "";
   position: fixed;
   inset: 0 0 auto 0;
   height: 2px;
-  background: var(--amber);
+  background: var(--accent);
   z-index: 100;
 }
 
@@ -115,7 +125,7 @@ h1, h2, h3, h4 {
   font-weight: 400;
   font-size: 0.32em;
   letter-spacing: 0;
-  color: var(--index);
+  color: var(--faint);
   vertical-align: middle;
   margin-left: 0.6rem;
 }
@@ -132,8 +142,8 @@ h1, h2, h3, h4 {
 }
 
 .muted { color: var(--muted); }
-.faint { color: var(--index); }
-.amber { color: var(--amber); }
+.faint { color: var(--faint); }
+.accent { color: var(--accent-text); }
 
 /* mono tag pill */
 .tag {
@@ -186,11 +196,11 @@ pre code { background: none; border: 0; padding: 0; }
   :root:not([data-theme]) .astro-code span { color: var(--shiki-light); }
 }
 
-::selection { background: color-mix(in srgb, var(--amber) 28%, transparent); color: var(--text); }
+::selection { background: color-mix(in srgb, var(--accent) 28%, transparent); color: var(--text); }
 
 /* skip link */
 .skip { position: absolute; left: -9999px; }
-.skip:focus { left: 1rem; top: 1rem; z-index: 200; background: var(--amber); color: #0f1115; padding: .5rem .8rem; border-radius: 6px; }
+.skip:focus { left: 1rem; top: 1rem; z-index: 200; background: var(--accent); color: #0f1115; padding: .5rem .8rem; border-radius: 6px; }
 
 /* ---- i18n: show the variant matching <html lang>, URLs unchanged ---- */
 [data-i18n-lang] { display: none; }
@@ -211,11 +221,11 @@ html:lang(nl) [data-i18n-lang="nl"] { display: contents; }
   transition: transform .15s ease, background .15s ease, border-color .15s ease;
 }
 .btn:hover { text-decoration: none; transform: translateY(-1px); }
-.btn--primary { background: var(--amber); color: #0f1115; border-color: var(--amber); }
-.btn--primary:hover { background: #f7b551; }
+.btn--primary { background: var(--accent); color: #0f1115; border-color: var(--accent); }
+.btn--primary:hover { background: color-mix(in srgb, var(--accent) 85%, #fff); }
 .btn--ghost { background: transparent; color: var(--text); border-color: color-mix(in srgb, var(--text) 26%, transparent); }
 .btn--ghost:hover { border-color: var(--text); background: color-mix(in srgb, var(--text) 7%, transparent); }
-/* github button: neutral (black on light, white on dark), never amber */
+/* github button: neutral (black on light, white on dark), never the accent */
 .btn--gh { background: transparent; color: var(--text); border-color: color-mix(in srgb, var(--text) 26%, transparent); }
 .btn--gh:hover { border-color: var(--text); background: color-mix(in srgb, var(--text) 7%, transparent); }
 .btn--gh svg { opacity: 0.9; }

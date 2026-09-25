@@ -1,4 +1,5 @@
-import { defineCollection, z } from 'astro:content';
+import { defineCollection } from 'astro:content';
+import { z } from 'astro/zod';
 import { glob } from 'astro/loaders';
 
 // Articles: markdown under src/content/articles/. Each article has an English and
@@ -20,9 +21,9 @@ const articles = defineCollection({
     // slug of the related project (see src/data/projects.ts)
     project: z.string().optional(),
     // canonical GitHub URL for the article's subject
-    repo: z.string().url().optional(),
+    repo: z.url().optional(),
     // the project's own live site / demo / docs, if any
-    url: z.string().url().optional(),
+    url: z.url().optional(),
     tags: z.array(z.string()).default([]),
     draft: z.boolean().default(false),
   }),

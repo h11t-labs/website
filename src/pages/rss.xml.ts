@@ -12,8 +12,8 @@ export async function GET(context: APIContext) {
     .map(
       (a) => `    <item>
       <title>${esc(a.en.data.title)}</title>
-      <link>${site}/writing/${a.slug}</link>
-      <guid>${site}/writing/${a.slug}</guid>
+      <link>${site}/writing/${a.slug}/</link>
+      <guid>${site}/writing/${a.slug}/</guid>
       <pubDate>${a.en.data.pubDate.toUTCString()}</pubDate>
       <description>${esc(a.en.data.description)}</description>
     </item>`

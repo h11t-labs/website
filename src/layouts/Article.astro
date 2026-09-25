@@ -22,7 +22,7 @@ const iso = pubDate.toISOString().slice(0, 10);
 
 <Base title={titleEn} description={description} type="article">
   <article class="article">
-    <p class="kicker"><a href="/writing"><T en="writing" nl="artikelen" /></a></p>
+    <p class="kicker"><a href="/writing/"><T en="writing" nl="artikelen" /></a></p>
     <h1 class="page-title article__title">
       <span data-i18n-lang="en">{titleEn}</span><span data-i18n-lang="nl">{titleNl}</span>
     </h1>
@@ -48,7 +48,7 @@ const iso = pubDate.toISOString().slice(0, 10);
 
     <RepoLinks repo={repo} url={url} placement="bottom" />
 
-    <p class="article__back"><a href="/writing"><T en="← all writing" nl="← alle artikelen" /></a></p>
+    <p class="article__back"><a href="/writing/"><T en="← all writing" nl="← alle artikelen" /></a></p>
   </article>
 </Base>
 
@@ -58,7 +58,7 @@ const iso = pubDate.toISOString().slice(0, 10);
   .article__meta {
     font-family: var(--font-mono);
     font-size: 0.78rem;
-    color: var(--index);
+    color: var(--faint);
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -88,10 +88,10 @@ const iso = pubDate.toISOString().slice(0, 10);
   .prose :global(strong) { color: var(--text); font-weight: 600; }
   .prose :global(ul), .prose :global(ol) { padding-left: 1.3rem; margin: 0 0 1.3rem; }
   .prose :global(li) { margin: 0.4rem 0; }
-  .prose :global(li)::marker { color: var(--amber); }
+  .prose :global(li)::marker { color: var(--accent); }
   .prose :global(blockquote) {
     margin: 1.5rem 0; padding: 0.2rem 0 0.2rem 1.1rem;
-    border-left: 2px solid var(--amber);
+    border-left: 2px solid var(--accent);
     color: var(--muted);
   }
   .prose :global(code) { font-size: 0.82em; }

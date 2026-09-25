@@ -31,7 +31,7 @@ const articles = await getArticlePairs();
   <section class="index-block">
     <header class="index-head">
       <p class="kicker">01 <span class="sep">—</span> <span class="on"><T en="projects" nl="projecten" /></span></p>
-      <a class="index-more" href="/work"><T en="view all →" nl="bekijk alles →" /></a>
+      <a class="index-more" href="/work/"><T en="view all →" nl="bekijk alles →" /></a>
     </header>
     {projects.map((project, i) => <WorkItem project={project} index={i} />)}
   </section>
@@ -40,7 +40,7 @@ const articles = await getArticlePairs();
   <section class="index-block">
     <header class="index-head">
       <p class="kicker">02 <span class="sep">—</span> <span class="on"><T en="writing" nl="artikelen" /></span></p>
-      <a class="index-more" href="/writing"><T en="view all →" nl="bekijk alles →" /></a>
+      <a class="index-more" href="/writing/"><T en="view all →" nl="bekijk alles →" /></a>
     </header>
     {articles.map((a) => (
       <WritingItem
@@ -50,6 +50,7 @@ const articles = await getArticlePairs();
         descEn={a.en.data.description}
         descNl={(a.nl ?? a.en).data.description}
         readMin={a.en.data.readMin}
+        pubDate={a.en.data.pubDate}
       />
     ))}
   </section>
@@ -71,7 +72,7 @@ const articles = await getArticlePairs();
     display: inline-block;
     width: 0.56em;
     height: 0.92em;
-    background: var(--amber);
+    background: var(--accent);
     margin-left: 0.12em;
     transform: translateY(0.1em);
     animation: cursor-blink 1.05s step-end infinite;
@@ -92,6 +93,6 @@ const articles = await getArticlePairs();
     margin-bottom: 0.5rem;
   }
   .index-head .kicker { margin: 0; }
-  .index-more { font-family: var(--font-mono); font-size: 0.8rem; color: var(--amber); }
+  .index-more { font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent-text); }
   .index-more:hover { text-decoration: none; opacity: 0.8; }
 </style>

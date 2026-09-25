@@ -14,7 +14,7 @@ const hasArticle = Boolean(project.article);
 <article class="work">
   <div class="work__body">
     <header class="work__head">
-      <h3 class="work__title">{project.name}</h3>
+      <h2 class="work__title">{project.name}</h2>
       <div class="work__meta"><span>{project.year}</span></div>
     </header>
 
@@ -34,7 +34,7 @@ const hasArticle = Boolean(project.article);
         </a>
       )}
       {hasArticle && (
-        <a class={`btn ${hasUrl ? 'btn--ghost' : 'btn--primary'}`} href={`/writing/${project.article}`}>
+        <a class={`btn ${hasUrl ? 'btn--ghost' : 'btn--primary'}`} href={`/writing/${project.article}/`}>
           <span data-i18n-lang="en">Read the write-up →</span><span data-i18n-lang="nl">Lees het verhaal →</span>
         </a>
       )}
@@ -69,7 +69,7 @@ const hasArticle = Boolean(project.article);
     flex: none;
     font-family: var(--font-mono);
     font-size: 0.75rem;
-    color: var(--index);
+    color: var(--faint);
     text-align: right;
   }
   .work__desc { color: var(--muted); font-size: 1rem; line-height: 1.65; margin: 0 0 1.1rem; max-width: 54ch; }
