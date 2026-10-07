@@ -16,10 +16,10 @@ it before writing copy or touching the design:
 
 **→ [github.com/h11t-labs/brand](https://github.com/h11t-labs/brand)**
 
-- [tone-of-voice.md](https://github.com/h11t-labs/brand/blob/main/tone-of-voice.md) — how h11t labs writes
-- [style-guide.md](https://github.com/h11t-labs/brand/blob/main/style-guide.md) — colors, type, spacing
-- [logo.md](https://github.com/h11t-labs/brand/blob/main/logo.md) · [logo.html](https://github.com/h11t-labs/brand/blob/main/logo.html) — the wordmark
-- [tokens.css](https://github.com/h11t-labs/brand/blob/main/tokens.css) — the design tokens (mirrored in `src/styles/global.css`)
+- [docs/tone-of-voice.md](https://github.com/h11t-labs/brand/blob/main/docs/tone-of-voice.md) — how h11t labs writes
+- [docs/style-guide.md](https://github.com/h11t-labs/brand/blob/main/docs/style-guide.md) — colors, type, spacing
+- [logo/](https://github.com/h11t-labs/brand/tree/main/logo) — the wordmark: spec, live HTML, SVGs, favicon
+- [tokens/tokens.css](https://github.com/h11t-labs/brand/blob/main/tokens/tokens.css) — the design tokens (mirrored in `src/styles/global.css`)
 
 ## Develop
 
@@ -111,7 +111,7 @@ bodies are the paired `-en`/`-nl` files ([src/lib/articles.ts](src/lib/articles.
 
 All colors and fonts live as CSS custom properties at the top of
 `src/styles/global.css`, mirrored on the `/system` page. The **source of truth** is
-[tokens.css in the brand repo](https://github.com/h11t-labs/brand/blob/main/tokens.css);
+[tokens.css in the brand repo](https://github.com/h11t-labs/brand/blob/main/tokens/tokens.css);
 keep the two in sync (ink, surface, border, accent, accent-text, text, muted,
 faint, link, index — dark and light).
 
