@@ -15,6 +15,19 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    slug: 'lintje',
+    name: 'lintje',
+    year: '2026',
+    description:
+      "The Rijkshuisstijl as web components, for applications as well as websites. Most component libraries stop at content pages; I also needed what an application is made of: charts, a side navigation, a dark mode that holds up everywhere and animation that feels right. Designed in Claude Design, with WCAG AA as the floor, and every component checked by axe in three browsers — light and dark, desktop and phone.",
+    descriptionNl:
+      "De Rijkshuisstijl als webcomponenten, voor applicaties én websites. De meeste componentbibliotheken houden op bij contentpagina's; ik had ook nodig waar een applicatie uit bestaat: grafieken, een verticale navigatie, een dark mode die overal klopt en animaties die goed aanvoelen. Ontworpen in Claude Design, met WCAG AA als ondergrens, en elk component door axe gecontroleerd in drie browsers — licht en donker, desktop en telefoon.",
+    tags: ['typescript', 'lit', 'web-components', 'wcag'],
+    repo: 'https://github.com/h11t-labs/lintje',
+    url: 'https://h11t-labs.github.io/lintje/',
+    article: 'lintje',
+  },
+  {
     slug: 'kobo2readwise',
     name: 'kobo2readwise',
     year: '2026',

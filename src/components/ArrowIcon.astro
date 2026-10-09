@@ -1,0 +1,13 @@
+---
+// Arrow for buttons, drawn as an SVG so it sits centred on the label: the ↗ and
+// → glyphs come from a fallback font and land above or below the mono text.
+interface Props { dir?: 'right' | 'up-right'; }
+const { dir = 'right' } = Astro.props;
+---
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none"
+     stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"
+     aria-hidden="true" style="width:0.95em;height:0.95em;flex:none;">
+  {dir === 'up-right'
+    ? <path d="M4.5 11.5l7-7M5.5 4.5h6v6" />
+    : <path d="M2.5 8h11M9 3.5L13.5 8 9 12.5" />}
+</svg>

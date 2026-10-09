@@ -1,6 +1,7 @@
 ---
 import type { Project } from '../data/projects';
 import GithubIcon from './GithubIcon.astro';
+import ArrowIcon from './ArrowIcon.astro';
 interface Props { project: Project; index: number; }
 const { project } = Astro.props;
 
@@ -30,12 +31,12 @@ const hasArticle = Boolean(project.article);
     <div class="work__actions">
       {hasUrl && (
         <a class="btn btn--primary" href={project.url} target="_blank" rel="noopener">
-          <span data-i18n-lang="en">Visit project ↗</span><span data-i18n-lang="nl">Bekijk project ↗</span>
+          <span data-i18n-lang="en">Visit project</span><span data-i18n-lang="nl">Bekijk project</span><ArrowIcon dir="up-right" />
         </a>
       )}
       {hasArticle && (
         <a class={`btn ${hasUrl ? 'btn--ghost' : 'btn--primary'}`} href={`/writing/${project.article}/`}>
-          <span data-i18n-lang="en">Read the write-up →</span><span data-i18n-lang="nl">Lees het verhaal →</span>
+          <span data-i18n-lang="en">Read the write-up</span><span data-i18n-lang="nl">Lees het verhaal</span><ArrowIcon />
         </a>
       )}
       {project.repo && (
