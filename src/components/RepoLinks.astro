@@ -4,6 +4,7 @@
 // so `placement` just tunes the margins.
 import T from './T.astro';
 import GithubIcon from './GithubIcon.astro';
+import ArrowIcon from './ArrowIcon.astro';
 
 interface Props {
   repo?: string;
@@ -17,7 +18,7 @@ const { repo, url, placement = 'top' } = Astro.props;
   <p class:list={['repo-links', placement]}>
     {url && (
       <a class="btn btn--primary" href={url} target="_blank" rel="noopener">
-        <T en="Visit the site ↗" nl="Bekijk de site ↗" />
+        <T en="Visit the site" nl="Bekijk de site" /><ArrowIcon dir="up-right" />
       </a>
     )}
     {repo && (

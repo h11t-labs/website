@@ -13,7 +13,7 @@ export async function GET(ctx: APIContext) {
   O.push('# h11t labs — full text');
   O.push('');
   O.push(
-    "h11t labs is where one developer hosts and shows their personal projects. Mostly Python: data & scraping, homelab/automation, and developer tooling. Plain, legible tools — from a one-file scraper to a full background-jobs stack, some open source, some private. The website is bilingual (English and Dutch); article text below is included in both languages."
+    "h11t labs is where one developer hosts and shows their personal projects. Python tools for data & scraping, homelab/automation and developer tooling, and a design system in TypeScript. Plain, legible, and all open source. The website is bilingual (English and Dutch); article text below is included in both languages."
   );
   O.push('');
   O.push('---');

@@ -12,7 +12,7 @@ export async function GET(ctx: APIContext) {
   L.push('# h11t labs');
   L.push('');
   L.push(
-    "> h11t labs is where one developer hosts and shows their personal projects — mostly Python (data & scraping, homelab/automation, dev tooling), from one-file scrapers to a full background-jobs stack. Some are open source, some private. Pages are bilingual (English/Dutch); this index is in English."
+    "> h11t labs is where one developer hosts and shows their personal projects — from Python tools (data & scraping, homelab/automation, dev tooling) to a design system in TypeScript. All of them are open source. Pages are bilingual (English/Dutch); this index is in English."
   );
   L.push('');
 
