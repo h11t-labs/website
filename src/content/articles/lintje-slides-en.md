@@ -1,10 +1,10 @@
 ---
 title: "lintje slides: the same house style, now for presentations"
-description: "A presentation as one HTML file, with thirty fixed layouts, charts from lintje, a check per slide and a PDF in light and dark. Because the styling comes from the layout, an agent makes the same slides you do."
+description: "A presentation as one HTML file, with thirty fixed layouts, charts from lintje, a check per slide, a presenter view and a PDF in light and dark. Because the styling comes from the layout, an agent makes the same slides you do."
 pubDate: 2026-11-27
 key: lintje-slides
 lang: en
-readMin: 6
+readMin: 8
 project: lintje-slides
 repo: https://github.com/h11t-labs/lintje-slides
 tags: ["html", "css", "playwright", "agents", "design-systems"]
@@ -72,6 +72,19 @@ can look at its own work. The check can't see whether a slide is half empty or a
 breaks onto a single word; a look at the PNG can. A deck with messages doesn't get a
 PDF.
 
+Here's what that looks like when one card has too much text:
+
+```text
+decks/demo.html: 2 meldingen
+  dia 5 (plain-three-cards): veld "cards": hoogstens 60 woorden, nu 67
+  dia 5 (plain-three-cards): een punt in "cards" past niet: maak de tekst korter
+```
+
+Add `?check` to the URL and the same messages show up on the slide itself, with an
+outline around the box that doesn't fit:
+
+![A slide with three cards in the browser, with red dashed outlines around the cards and two red bars at the bottom: 'een punt in "cards" past niet: maak de tekst korter' and 'veld "cards": hoogstens 60 woorden, nu 67'.](/writing/lintje-slides/check.png)
+
 That makes it a loop an agent can close on its own: write, check, fix, look. The result
 looks like it came out of the same template — because it did.
 
@@ -130,7 +143,7 @@ out the workflow from storyline to PDF:
 3. **Writing the deck**, starting from the example that uses every layout once, with an
    amount of text that fits.
 4. **Checking**, and looking at every PNG.
-5. **Exporting** to PDF, light and dark.
+5. **Exporting** to PDF, light and dark, or as a single file.
 
 Around that sits what makes a good presentation: roughly one content slide per minute,
 switch backgrounds so three slides don't read as one long one, save blue for what the
@@ -155,21 +168,58 @@ get a deck that passes the check, with a PDF to go with it.
 ## Presenting
 
 `npx lintje-slides serve` starts a server with a link per deck. You present in the
-browser: arrow keys, space or a clicker to move, F for full screen, O for an overview of
-all slides, D for light or dark. The slide number sits in the URL, so a shared link
-opens on the right slide. Then:
+browser: arrow keys, space or a clicker to move, F for full screen, D for light or dark.
+Move the mouse and the buttons fade in at the bottom; keep still or page with the keys
+and they fade out again. The slide number sits in the URL, so a shared link opens on the
+right slide.
+
+![A slide with the bar chart in the browser, with a row of buttons at the bottom: previous, 16 / 30, next, light or dark, all slides, presenter view, full screen and shortcuts.](/writing/lintje-slides/presenting.png)
+
+O opens an overview of all slides, small and side by side. The one you're on has a
+border, the rest is dimmed; click one, or pick it with the arrow keys and Enter.
+
+![The overview: slides 9 to 20 small in a four-column grid, numbered. Slide 16 with the chart has a dark border, the others are dimmed.](/writing/lintje-slides/overview.png)
+
+### Presenter view
+
+Since 0.2 a slide can have notes, in an `<aside data-notes>` at the end of the slide. The
+room never sees them — not on the slide, not in the overview and not in the PDF:
+
+```html
+<aside data-notes>
+  <p>Loop de vier onderdelen langs, in één zin elk.</p>
+  <ul>
+    <li>Noem de deadline van <strong>1 december</strong> nu al.</li>
+    <li>Vragen mogen tussendoor.</li>
+  </ul>
+</aside>
+```
+
+S opens the presenter view in a second window: the slide the room sees, the next one,
+your notes, the time and how long you've been going. The two windows stay in step, also
+when you page or switch to dark in the other one. That one goes on your own screen; you
+drag the room window to the projector and press F there.
+
+![The presenter view: the current slide (the agenda) large on the left, the next one smaller on the right, the notes underneath, and the time, the duration and the buttons at the top right.](/writing/lintje-slides/presenter.png)
+
+### PDF and a single file
 
 ```bash
 npx lintje-slides pdf decks/brieven.html           # out/brieven.pdf
 npx lintje-slides pdf decks/brieven.html --dark    # out/brieven-dark.pdf
+npx lintje-slides bundle decks/brieven.html        # out/brieven.html
 ```
 
-Still to come: a presenter view with notes in a second window, and a deck as a single
-HTML file you can mail and open with a double-click, without a server or internet.
+That last one is new in 0.2 too: the deck as one standalone HTML file, with the styling,
+the scripts, the font, the icons and the photos inside. It opens with a double-click,
+without a server or internet, and does everything the deck does through the server — the
+presenter view included. Only the parts of lintje the deck actually draws come along, so
+most of the size is the photos. Handy for mailing, or for taking on a USB stick to a room
+where you don't know what's set up.
 
 ## Released
 
-lintje slides is out, as version 0.1. It's on npm as `@lintje/slides`, brings its own
+lintje slides is out, now at version 0.2. It's on npm as `@lintje/slides`, brings its own
 version of lintje along, and the code is on GitHub under the EUPL-1.2 licence. The
 layouts, the skill and the check's messages are in Dutch, like the presentations it's
 made for.

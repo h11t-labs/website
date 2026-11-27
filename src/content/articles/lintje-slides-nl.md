@@ -1,10 +1,10 @@
 ---
 title: "lintje slides: dezelfde huisstijl, nu voor presentaties"
-description: "Een presentatie als één HTML-bestand, met dertig vaste indelingen, grafieken uit lintje, een controle per dia en een pdf in licht en donker. Omdat de opmaak uit de indeling komt, maakt een agent dezelfde dia's als jij."
+description: "Een presentatie als één HTML-bestand, met dertig vaste indelingen, grafieken uit lintje, een controle per dia, een sprekersweergave en een pdf in licht en donker. Omdat de opmaak uit de indeling komt, maakt een agent dezelfde dia's als jij."
 pubDate: 2026-11-27
 key: lintje-slides
 lang: nl
-readMin: 6
+readMin: 8
 project: lintje-slides
 repo: https://github.com/h11t-labs/lintje-slides
 tags: ["html", "css", "playwright", "agents", "design-systems"]
@@ -72,6 +72,19 @@ een agent naar z'n eigen werk kan kijken. De controle ziet namelijk niet of een 
 leeg is of een titel op één woord breekt; een blik op de png wél. Een deck met
 meldingen krijgt geen pdf.
 
+Zo ziet dat eruit als één kaart te veel tekst heeft:
+
+```text
+decks/demo.html: 2 meldingen
+  dia 5 (plain-three-cards): veld "cards": hoogstens 60 woorden, nu 67
+  dia 5 (plain-three-cards): een punt in "cards" past niet: maak de tekst korter
+```
+
+Met `?check` achter de URL staan dezelfde meldingen op de dia zelf, met een rand om het
+vak dat niet past:
+
+![Een dia met drie kaarten in de browser, met rode stippellijnen om de kaarten en twee rode balken onderaan: 'een punt in "cards" past niet: maak de tekst korter' en 'veld "cards": hoogstens 60 woorden, nu 67'.](/writing/lintje-slides/check.png)
+
 Zo wordt het een lus die een agent zelf rond kan maken: schrijven, controleren,
 oplossen, kijken. Het resultaat ziet eruit alsof het uit hetzelfde sjabloon komt —
 omdat het dat ook doet.
@@ -131,7 +144,7 @@ beschrijft de werkwijze van verhaallijn tot pdf:
 3. **Het deck schrijven**, vanuit het voorbeeld waarin elke indeling één keer staat, in
    een hoeveelheid tekst die past.
 4. **Controleren**, en elke png bekijken.
-5. **Exporteren** naar pdf, licht en donker.
+5. **Exporteren** naar pdf, licht en donker, of als één los bestand.
 
 Daaromheen staat wat een goede presentatie maakt: ongeveer één inhoudsdia per minuut,
 wissel van ondergrond zodat drie dia's niet als één lange lezen, bewaar blauw voor wat
@@ -156,22 +169,58 @@ en krijg je een deck dat door de controle komt, met een pdf erbij.
 ## Presenteren
 
 `npx lintje-slides serve` start een server met een link per deck. Je presenteert in de
-browser: bladeren met de pijltjes, spatie of een clicker, F voor volledig scherm, O voor
-een overzicht van alle dia's, D voor licht of donker. Het nummer van de dia staat in de
-URL, dus een gedeelde link opent op de goede dia. Daarna:
+browser: bladeren met de pijltjes, spatie of een clicker, F voor volledig scherm, D voor
+licht of donker. Beweeg je de muis, dan faden onderin de knoppen in; sta je stil of
+blader je met de toetsen, dan faden ze weer uit. Het nummer van de dia staat in de URL,
+dus een gedeelde link opent op de goede dia.
+
+![Een dia met de staafgrafiek in de browser, met onderin een rij knoppen: vorige, 16 / 30, volgende, licht of donker, alle dia's, sprekersweergave, volledig scherm en sneltoetsen.](/writing/lintje-slides/presenting.png)
+
+O opent een overzicht van alle dia's, klein naast elkaar. De dia waar je bent heeft een
+rand, de rest is gedimd; klik er een aan of kies met de pijltjes en Enter.
+
+![Het overzicht: dia 9 tot en met 20 klein in een raster van vier kolommen, met nummers erboven. Dia 16 met de grafiek heeft een donkere rand, de andere zijn gedimd.](/writing/lintje-slides/overview.png)
+
+### Sprekersweergave
+
+Sinds 0.2 kan een dia notities hebben, in een `<aside data-notes>` als laatste in de dia.
+De zaal ziet ze nooit — niet op de dia, niet in het overzicht en niet in de pdf:
+
+```html
+<aside data-notes>
+  <p>Loop de vier onderdelen langs, in één zin elk.</p>
+  <ul>
+    <li>Noem de deadline van <strong>1 december</strong> nu al.</li>
+    <li>Vragen mogen tussendoor.</li>
+  </ul>
+</aside>
+```
+
+S opent de sprekersweergave in een tweede venster: de dia die de zaal ziet, de volgende,
+je notities, de tijd en hoe lang je al bezig bent. De twee vensters lopen gelijk, ook
+als je in het andere bladert of naar donker wisselt. Die zet je op je eigen scherm; het
+zaalvenster sleep je naar de beamer en daar druk je op F.
+
+![De sprekersweergave: links groot de huidige dia (de agenda), rechts kleiner de volgende, eronder de notities, en rechtsboven de tijd, de duur en de knoppen.](/writing/lintje-slides/presenter.png)
+
+### Pdf en een los bestand
 
 ```bash
 npx lintje-slides pdf decks/brieven.html           # out/brieven.pdf
 npx lintje-slides pdf decks/brieven.html --dark    # out/brieven-dark.pdf
+npx lintje-slides bundle decks/brieven.html        # out/brieven.html
 ```
 
-Wat er nu nog aan komt: een sprekersweergave met notities in een tweede venster, en een
-deck als één los HTML-bestand dat je kunt mailen en met een dubbelklik opent, zonder
-server of internet.
+Dat laatste is ook nieuw in 0.2: het deck als één los HTML-bestand, met de opmaak, de
+scripts, het lettertype, de iconen en de foto's erin. Het opent met een dubbelklik,
+zonder server of internet, en doet alles wat het deck via de server doet — de
+sprekersweergave ook. Van lintje gaat alleen mee wat het deck tekent, dus de grootte
+zit vooral in de foto's. Handig om te mailen, of om op een USB-stick mee te nemen naar
+een zaal waar je niet weet wat er staat.
 
 ## Uitgebracht
 
-lintje slides is uit, als versie 0.1. Het staat op npm als `@lintje/slides`, brengt z'n
+lintje slides is uit, nu als versie 0.2. Het staat op npm als `@lintje/slides`, brengt z'n
 eigen versie van lintje mee, en de code staat op GitHub onder de EUPL-1.2-licentie. De
 indelingen, de skill en de meldingen zijn in het Nederlands, net als de presentaties
 waar het voor is.
