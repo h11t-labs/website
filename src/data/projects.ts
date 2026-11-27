@@ -15,6 +15,18 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    slug: 'lintje-slides',
+    name: 'lintje-slides',
+    year: '2026',
+    description:
+      "lintje for presentations. A deck is one HTML file; each slide picks one of thirty layouts and fills its fields, so the styling never drifts and an agent makes the same slides you do. Charts come from lintje, a check in Chromium reports what doesn't fit, a presenter view shows your notes, and the export is a PDF in light and dark or a single HTML file. Comes with a skill for an AI assistant.",
+    descriptionNl:
+      "lintje voor presentaties. Een deck is één HTML-bestand; elke dia kiest een van dertig indelingen en vult de velden, dus de opmaak loopt nooit weg en een agent maakt dezelfde dia's als jij. De grafieken komen uit lintje, een controle in Chromium meldt wat niet past, een sprekersweergave toont je notities, en je exporteert naar pdf in licht en donker of naar één los HTML-bestand. Met een skill voor een AI-assistent.",
+    tags: ['html', 'css', 'playwright', 'agents'],
+    repo: 'https://github.com/h11t-labs/lintje-slides',
+    article: 'lintje-slides',
+  },
+  {
     slug: 'lintje',
     name: 'lintje',
     year: '2026',
