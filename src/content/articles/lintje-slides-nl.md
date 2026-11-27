@@ -69,21 +69,21 @@ een veld dat ontbreekt, een titel van meer dan zestien woorden, een foto zonder
 alt-tekst, opmaak in de inhoud, of tekst die niet in z'n vak past — met erbij wat je
 doet: "maak de tekst korter". Met `--images` zet hij ook een png per dia in `out/`, zodat
 een agent naar z'n eigen werk kan kijken. De controle ziet namelijk niet of een dia half
-leeg is of een titel op één woord breekt; een blik op de png wél. Een deck met
-meldingen krijgt geen pdf.
+leeg is of een titel op één woord breekt; een blik op de png wél. Eén oorzaak geeft één
+melding, dus een agent hoeft niet te raden welke van drie regels het echte probleem is.
+Een deck met meldingen krijgt geen pdf.
 
 Zo ziet dat eruit als één kaart te veel tekst heeft:
 
 ```text
-decks/demo.html: 2 meldingen
-  dia 5 (plain-three-cards): veld "cards": hoogstens 60 woorden, nu 67
-  dia 5 (plain-three-cards): een punt in "cards" past niet: maak de tekst korter
+decks/demo.html: 1 melding
+  dia 5 (plain-three-cards): veld "cards" past niet (70 woorden, hoogstens 60): maak de tekst korter
 ```
 
-Met `?check` achter de URL staan dezelfde meldingen op de dia zelf, met een rand om het
-vak dat niet past:
+Met `?check` achter de URL staat dezelfde melding op de dia zelf, net boven de voet, en
+heeft het vak dat niet past een dunne foutlijn:
 
-![Een dia met drie kaarten in de browser, met rode stippellijnen om de kaarten en twee rode balken onderaan: 'een punt in "cards" past niet: maak de tekst korter' en 'veld "cards": hoogstens 60 woorden, nu 67'.](/writing/lintje-slides/check.png)
+![Een dia met drie kaarten in de browser, met een rode lijn om de kaarten en net boven de voet één foutmelding: 'veld "cards" past niet (70 woorden, hoogstens 60): maak de tekst korter'.](/writing/lintje-slides/check.png)
 
 Zo wordt het een lus die een agent zelf rond kan maken: schrijven, controleren,
 oplossen, kijken. Het resultaat ziet eruit alsof het uit hetzelfde sjabloon komt —
@@ -119,12 +119,13 @@ Een dia met data gebruikt de indeling `band-chart`, en daarin staat een
 Geen screenshot uit Excel dus, maar een echte grafiek in de huisstijl: zes soorten
 (staaf, gegroepeerd, gestapeld, lijn, liggende staaf en taart), de datakleuren van de
 Rijkshuisstijl bij naam, grijs voor de vergelijking, en een `description` die de cijfers
-in woorden zegt voor wie ze niet ziet. In donker blijft het blauw hetzelfde blauw; alleen
-het grijs van de vergelijking wordt lichter, zodat het leesbaar blijft.
+in woorden zegt voor wie ze niet ziet. In donker blijft het blauw van de data hetzelfde
+blauw; het grijs van de vergelijking wordt lichter, zodat het leesbaar blijft, en de band
+achter de titel wordt een gedempt blok, zodat elk thema het contrast haalt.
 
 ![Een dia met een gegroepeerde staafgrafiek: telefoontjes per 1.000 brieven, de oude brief in grijs en de nieuwe in blauw, met de titel "Na het herschrijven bellen minder mensen na een brief".](/writing/lintje-slides/chart-light.png)
 
-![Dezelfde dia in dark mode: donkere achtergrond, de oude brief lichtgrijs, de nieuwe in hetzelfde blauw.](/writing/lintje-slides/chart-dark.png)
+![Dezelfde dia in dark mode: donkere achtergrond, een gedempte donkerblauwe band achter de titel, de oude brief lichtgrijs, de nieuwe in hetzelfde blauw.](/writing/lintje-slides/chart-dark.png)
 
 Voor wie geen grafiek nodig heeft maar één getal: er zijn indelingen voor een kerncijfer
 en voor drie cijfers naast elkaar.
@@ -170,16 +171,27 @@ en krijg je een deck dat door de controle komt, met een pdf erbij.
 
 `npx lintje-slides serve` start een server met een link per deck. Je presenteert in de
 browser: bladeren met de pijltjes, spatie of een clicker, F voor volledig scherm, D voor
-licht of donker. Beweeg je de muis, dan faden onderin de knoppen in; sta je stil of
-blader je met de toetsen, dan faden ze weer uit. Het nummer van de dia staat in de URL,
-dus een gedeelde link opent op de goede dia.
+licht of donker. Beweeg je de muis, dan faden de knoppen in; sta je stil of blader je
+met de toetsen, dan faden ze weer uit. Het nummer van de dia staat in de URL, dus een
+gedeelde link opent op de goede dia.
 
-![Een dia met de staafgrafiek in de browser, met onderin een rij knoppen: vorige, 16 / 30, volgende, licht of donker, alle dia's, sprekersweergave, volledig scherm en sneltoetsen.](/writing/lintje-slides/presenting.png)
+De knoppen staan in de marge onder de dia als het scherm die heeft, zoals op een laptop
+van 16:10, en anders in de band van de voet. Ze liggen dus nooit over de bron of de
+voet.
+
+![Een dia met de staafgrafiek in de browser, met in de marge eronder een rij knoppen: vorige, 16 / 30, volgende, licht of donker, alle dia's, sprekersweergave, volledig scherm en sneltoetsen.](/writing/lintje-slides/presenting.png)
+
+Sinds 0.3 kan de balk ook boven, links of rechts staan: met `data-controls="right"` op
+`<body>` voor het hele deck, of voor één keer met `?controls=right` achter de URL.
+Links en rechts staan de knoppen onder elkaar. Dat is handig op een breed scherm, of als
+je aan de zijkant van de zaal staat.
+
+![Dezelfde dia op een breed scherm, met de knoppen onder elkaar in de marge rechts van de dia.](/writing/lintje-slides/controls-right.png)
 
 O opent een overzicht van alle dia's, klein naast elkaar. De dia waar je bent heeft een
-rand, de rest is gedimd; klik er een aan of kies met de pijltjes en Enter.
+rand en een gevuld nummer; klik er een aan of kies met de pijltjes en Enter.
 
-![Het overzicht: dia 9 tot en met 20 klein in een raster van vier kolommen, met nummers erboven. Dia 16 met de grafiek heeft een donkere rand, de andere zijn gedimd.](/writing/lintje-slides/overview.png)
+![Het overzicht: dia 9 tot en met 20 klein in een raster van vier kolommen, met nummers erboven. Dia 16 met de grafiek heeft een donkere rand en een gevuld nummer.](/writing/lintje-slides/overview.png)
 
 ### Sprekersweergave
 
@@ -196,12 +208,14 @@ De zaal ziet ze nooit — niet op de dia, niet in het overzicht en niet in de pd
 </aside>
 ```
 
-S opent de sprekersweergave in een tweede venster: de dia die de zaal ziet, de volgende,
-je notities, de tijd en hoe lang je al bezig bent. De twee vensters lopen gelijk, ook
-als je in het andere bladert of naar donker wisselt. Die zet je op je eigen scherm; het
-zaalvenster sleep je naar de beamer en daar druk je op F.
+S opent de sprekersweergave in een tweede venster. Bovenin staan de naam van het deck,
+de dia waar je bent, hoe lang je al bezig bent als groot cijfer, de tijd en knoppen voor
+vorige en volgende. Links staat de dia die de zaal ziet, met de volgende klein eronder;
+rechts hebben je notities de hele kolom. De twee vensters lopen gelijk, ook als je in
+het andere bladert of naar donker wisselt. De sprekersweergave zet je op je eigen
+scherm; het zaalvenster sleep je naar de beamer en daar druk je op F.
 
-![De sprekersweergave: links groot de huidige dia (de agenda), rechts kleiner de volgende, eronder de notities, en rechtsboven de tijd, de duur en de knoppen.](/writing/lintje-slides/presenter.png)
+![De sprekersweergave: bovenin de naam van het deck, de duur, de tijd en de knoppen Vorige, Volgende en Sluiten; links groot de huidige dia (de agenda) met de volgende klein eronder, rechts de notities.](/writing/lintje-slides/presenter.png)
 
 ### Pdf en een los bestand
 
@@ -220,7 +234,7 @@ een zaal waar je niet weet wat er staat.
 
 ## Uitgebracht
 
-lintje slides is uit, nu als versie 0.2. Het staat op npm als `@lintje/slides`, brengt z'n
+lintje slides is uit, nu als versie 0.3. Het staat op npm als `@lintje/slides`, brengt z'n
 eigen versie van lintje mee, en de code staat op GitHub onder de EUPL-1.2-licentie. De
 indelingen, de skill en de meldingen zijn in het Nederlands, net als de presentaties
 waar het voor is.

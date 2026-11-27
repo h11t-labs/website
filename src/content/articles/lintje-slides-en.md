@@ -69,21 +69,21 @@ layout or a missing field, a title longer than sixteen words, a photo without al
 styling in the content, or text that overflows its box — along with what to do: "make
 the text shorter". With `--images` it also writes a PNG per slide to `out/`, so an agent
 can look at its own work. The check can't see whether a slide is half empty or a title
-breaks onto a single word; a look at the PNG can. A deck with messages doesn't get a
-PDF.
+breaks onto a single word; a look at the PNG can. One cause gives one message, so an
+agent doesn't have to guess which of three lines is the real problem. A deck with
+messages doesn't get a PDF.
 
 Here's what that looks like when one card has too much text:
 
 ```text
-decks/demo.html: 2 meldingen
-  dia 5 (plain-three-cards): veld "cards": hoogstens 60 woorden, nu 67
-  dia 5 (plain-three-cards): een punt in "cards" past niet: maak de tekst korter
+decks/demo.html: 1 melding
+  dia 5 (plain-three-cards): veld "cards" past niet (70 woorden, hoogstens 60): maak de tekst korter
 ```
 
-Add `?check` to the URL and the same messages show up on the slide itself, with an
-outline around the box that doesn't fit:
+Add `?check` to the URL and the same message shows up on the slide itself, just above
+the footer, with a thin error line around the box that doesn't fit:
 
-![A slide with three cards in the browser, with red dashed outlines around the cards and two red bars at the bottom: 'een punt in "cards" past niet: maak de tekst korter' and 'veld "cards": hoogstens 60 woorden, nu 67'.](/writing/lintje-slides/check.png)
+![A slide with three cards in the browser, with a red line around the cards and, just above the footer, one error message: 'veld "cards" past niet (70 woorden, hoogstens 60): maak de tekst korter'.](/writing/lintje-slides/check.png)
 
 That makes it a loop an agent can close on its own: write, check, fix, look. The result
 looks like it came out of the same template — because it did.
@@ -118,12 +118,13 @@ same chart as in lintje, with its data as JSON:
 So no screenshot from Excel, but a real chart in the house style: six kinds (bar,
 grouped, stacked, line, horizontal bar and pie), the Rijkshuisstijl data colours by
 name, grey for the comparison, and a `description` that puts the numbers into words for
-anyone who can't see them. In dark mode the blue stays the same blue; only the grey of
-the comparison gets lighter, so it stays readable.
+anyone who can't see them. In dark mode the blue of the data stays the same blue; the
+grey of the comparison gets lighter, so it stays readable, and the band behind the title
+becomes a muted block, so every theme meets the contrast.
 
 ![A slide with a grouped bar chart: calls per 1,000 letters, the old letter in grey and the new one in blue, titled "Na het herschrijven bellen minder mensen na een brief".](/writing/lintje-slides/chart-light.png)
 
-![The same slide in dark mode: dark background, the old letter in light grey, the new one in the same blue.](/writing/lintje-slides/chart-dark.png)
+![The same slide in dark mode: dark background, a muted dark-blue band behind the title, the old letter in light grey, the new one in the same blue.](/writing/lintje-slides/chart-dark.png)
 
 If you need one number rather than a chart, there are layouts for a key figure and for
 three figures side by side.
@@ -169,16 +170,26 @@ get a deck that passes the check, with a PDF to go with it.
 
 `npx lintje-slides serve` starts a server with a link per deck. You present in the
 browser: arrow keys, space or a clicker to move, F for full screen, D for light or dark.
-Move the mouse and the buttons fade in at the bottom; keep still or page with the keys
-and they fade out again. The slide number sits in the URL, so a shared link opens on the
-right slide.
+Move the mouse and the buttons fade in; keep still or page with the keys and they fade
+out again. The slide number sits in the URL, so a shared link opens on the right slide.
 
-![A slide with the bar chart in the browser, with a row of buttons at the bottom: previous, 16 / 30, next, light or dark, all slides, presenter view, full screen and shortcuts.](/writing/lintje-slides/presenting.png)
+The buttons sit in the margin below the slide when the screen has one, as on a 16:10
+laptop, and otherwise in the band of the footer. So they never cover the source line or
+the footer.
+
+![A slide with the bar chart in the browser, with a row of buttons in the margin below it: previous, 16 / 30, next, light or dark, all slides, presenter view, full screen and shortcuts.](/writing/lintje-slides/presenting.png)
+
+Since 0.3 the bar can also go at the top, left or right: with `data-controls="right"` on
+`<body>` for the whole deck, or just this once with `?controls=right` in the URL. On the
+left and right the buttons stack. Handy on a wide screen, or when you're standing at the
+side of the room.
+
+![The same slide on a wide screen, with the buttons stacked in the margin to the right of the slide.](/writing/lintje-slides/controls-right.png)
 
 O opens an overview of all slides, small and side by side. The one you're on has a
-border, the rest is dimmed; click one, or pick it with the arrow keys and Enter.
+border and a filled number; click one, or pick it with the arrow keys and Enter.
 
-![The overview: slides 9 to 20 small in a four-column grid, numbered. Slide 16 with the chart has a dark border, the others are dimmed.](/writing/lintje-slides/overview.png)
+![The overview: slides 9 to 20 small in a four-column grid, numbered. Slide 16 with the chart has a dark border and a filled number.](/writing/lintje-slides/overview.png)
 
 ### Presenter view
 
@@ -195,12 +206,14 @@ room never sees them — not on the slide, not in the overview and not in the PD
 </aside>
 ```
 
-S opens the presenter view in a second window: the slide the room sees, the next one,
-your notes, the time and how long you've been going. The two windows stay in step, also
-when you page or switch to dark in the other one. That one goes on your own screen; you
-drag the room window to the projector and press F there.
+S opens the presenter view in a second window. At the top are the name of the deck, the
+slide you're on, how long you've been going as a large number, the time, and buttons for
+previous and next. On the left is the slide the room sees, with the next one small
+underneath; on the right your notes get the whole column. The two windows stay in step,
+also when you page or switch to dark in the other one. The presenter view goes on your
+own screen; you drag the room window to the projector and press F there.
 
-![The presenter view: the current slide (the agenda) large on the left, the next one smaller on the right, the notes underneath, and the time, the duration and the buttons at the top right.](/writing/lintje-slides/presenter.png)
+![The presenter view: at the top the name of the deck, the duration, the time and the buttons Previous, Next and Close; on the left the current slide (the agenda) large with the next one small underneath, on the right the notes.](/writing/lintje-slides/presenter.png)
 
 ### PDF and a single file
 
@@ -219,7 +232,7 @@ where you don't know what's set up.
 
 ## Released
 
-lintje slides is out, now at version 0.2. It's on npm as `@lintje/slides`, brings its own
+lintje slides is out, now at version 0.3. It's on npm as `@lintje/slides`, brings its own
 version of lintje along, and the code is on GitHub under the EUPL-1.2 licence. The
 layouts, the skill and the check's messages are in Dutch, like the presentations it's
 made for.
